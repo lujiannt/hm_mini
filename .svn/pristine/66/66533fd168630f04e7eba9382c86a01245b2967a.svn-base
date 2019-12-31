@@ -268,6 +268,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  min-height: 500rpx;
   background-color: #fff;
 }
 
@@ -278,33 +279,5 @@
  margin: 60rpx 0 60rpx 40rpx; 
 }
 
-.freight_pop_all{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 700rpx;
-  margin: 0 auto 50rpx auto;
-  padding: 0 0 30rpx 0;
-  border-bottom:  1px solid #cccccc;
-}
 
-
-
-.freight_pop_kd{
-  margin: 0 100rpx 0 40rpx;
-  font-size: 28rpx;
-  color: #333333;
-  float: left;
-}
-
-.freight_pop_price{
-  font-size: 28rpx;
-  color: #333333;
-  float: left;
-}
-.freight_pop_img{
-  width: 32rpx;
-  height: 32rpx;
-  margin: 0 130rpx 0 0;
-}
 

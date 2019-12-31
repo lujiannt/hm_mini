@@ -1,7 +1,5 @@
 /* pages/add_address/add_address.wxss */
-page{
-  background-color: #f7f7f7;
-}
+
 .view-page {
   height: 100%;
   width: 100%;
@@ -9,7 +7,7 @@ page{
   top: 0;
   box-sizing: border-box;
   position: absolute;
-
+    background-color: #f7f7f7;
 }
 
 .page-content {

@@ -58,13 +58,8 @@
         </block>
 
         <view class="freight_right" wx:else>
-          <view class="freight_right_name" wx:if="{{sel_com == false}}">{{shipFeeList[0].postlist[0].postname}}</view>
-          <view class="freight_right_pri" wx:if="{{sel_com == false}}">￥{{shipFeeList[0].postlist[0].postfee/100}}</view>
-
-          <view class="freight_right_name" wx:if="{{sel_com == true}}">{{freight_name}}</view>
-          <view class="freight_right_pri" wx:if="{{sel_com == true}}">￥{{freight_postfee}}</view>
-
-
+          <view class="freight_right_name">{{shipFeeList[0].postlist[0].postname}}</view>
+          <view class="freight_right_pri">￥{{shipFeeList[0].postlist[0].postfee/100}}</view>
           <image class="freight_img" src="/images/commodity_details/arrow.png"></image>
         </view>
 
@@ -88,7 +83,7 @@
       <view class="sub_right">
         <view class="total">合计: </view>
         <view class="sub_pri">￥{{pay_price}}</view>
-        <view class="but_submit_order" bindtap="submit_order">提交订单</view>
+        <view class="but_submit_order">提交订单</view>
       </view>
     </view>
 
@@ -99,20 +94,6 @@
 
         <!-- 运费 -->
         <view class="freight_pop">运费</view>
-
-        <view class="freight_pop_all" wx:for="{{shipFeeList[0].postlist}}" wx:key="index" data-id="{{item.companyId}}" data-name="{{item.postname}}" data-postfee="{{item.postfee/100}}" bindtap="company">
-
-        <view class="freight_pop_left">
-          <view class="freight_pop_kd">{{item.postname}}</view>
-          <view class="freight_pop_price" wx:if="{{item.postfee == 0}}">包邮</view>
-          <view class="freight_pop_price" wx:else>￥{{item.postfee/100}}</view>
-          <view style="clear:both"></view>
-        </view>
-
-        <image wx:if="{{item.select == false}}" class="freight_pop_img" src="/images/shopping/k_choice.png"></image>
-        <image wx:else class="freight_pop_img" src="/images/shopping/choice.png"></image>
-        
-        </view>
 
 
       </view>
