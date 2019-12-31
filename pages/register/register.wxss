@@ -1,0 +1,141 @@
+/* pages/register/register.wxss */
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  height: 90%;
+  margin-top: 120rpx;
+}
+
+.LOGO{
+  width: 343rpx;
+  height: 39rpx;
+  margin: 160rpx 0 200rpx 27%;
+}
+
+.password{
+  position: relative;
+  color: #ccc;
+}
+
+.pl_phone_number{
+  font-size: 30rpx;
+  color: #ccc;
+}
+.pl_enter_password{
+  font-size: 30rpx;
+  color: #ccc;
+}
+
+.phone_number{
+  width: 550rpx;
+  height: 96rpx;
+  margin: 0 auto 60rpx auto;
+  padding-left: 50rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #333;
+}
+.enter_password{
+  width: 550rpx;
+  height: 96rpx;
+  margin: 0 auto;
+  padding-left: 50rpx;
+  color: black;
+  font-size: 30rpx;
+  border-bottom: 1px solid #333;
+}
+
+.dianji{
+  width: 96rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  position: absolute;
+  top: 0;
+  right: 80rpx;
+  z-index: 10;
+  text-align: center;
+}
+
+.eye{
+  width: 32rpx;
+  height: 23rpx;
+  /* position: absolute;
+  top: 35rpx;
+  right: 120rpx; */
+
+}
+
+.mistake{
+  font-size: 26rpx;
+  color: #de4040;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.regbut{
+  width: 550rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #fff !important;
+  border-radius: 65rpx;
+  background-color: #cccccc !important;
+  margin: 50rpx auto 0 auto;
+}
+
+.redbut{
+   width: 550rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #fff !important;
+  border-radius: 65rpx;
+  margin: 50rpx auto 0 auto;
+  background-color: #de4040 !important;
+}
+
+
+.tclick{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 500rpx;
+  margin: 60rpx auto 0 auto;
+  font-size: 26rpx;
+  color: #32b0f1;
+}
+
+.new_user{
+  font-size: 26rpx;
+  color: #333333;
+  margin: 70rpx 0 0 120rpx;
+}
+
+.loginred{
+  font-size: 26rpx;
+  color: #de4040;
+}
+
+.explain{
+  font-size: 24rpx;
+  color: #808080;
+  text-align: center;
+  margin-top: 110rpx;
+}
+.privacy{
+   font-size: 24rpx;
+  color: #de4040;
+}
+.clause{
+   font-size: 24rpx;
+  color: #de4040;
+}

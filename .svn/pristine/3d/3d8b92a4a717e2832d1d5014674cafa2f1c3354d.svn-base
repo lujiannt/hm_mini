@@ -1,0 +1,8 @@
+var test = 'http://47.103.122.104:8888'
+var test2 = 'http://192.168.0.104:8080'
+
+
+module.exports = {
+  test,
+  test2,
+}

@@ -1,0 +1,45 @@
+<!-- 登录 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="headnav" page-name="购物小程序" ></navbar>
+
+  <view class="page-content">
+
+    <!-- LOGO -->
+    <image class="LOGO" src="/images/logo.png"></image>
+
+    <!-- 表单 -->
+    <form bindsubmit="formSubmit" class="import" >
+      <input placeholder="输入手机号" type="number" placeholder-class="pl_phone_number" class="phone_number" bindinput="phone_number" name="iphone" bindfocus="bindfocus"></input>
+
+      <view class="password">
+        <input wx:if="{{isshow1}}" placeholder="输入密码" class="enter_password" placeholder-class="pl_enter_password" type="password" value="{{newPassword}}" bindinput="password1" name="password" bindfocus="bindfocus"></input>
+        <input wx:else placeholder="输入密码" class="enter_password" value="{{newPassword}}" type="text" placeholder-class="pl_enter_password" bindinput="password2" name="password" bindfocus="bindfocus"></input>
+        <view class="dianji" wx:if="{{isshow1}}" bindtap="figure">
+          <image class="eye" src="/images/password-hidden.png"></image>
+        </view>
+        <view class="dianji" wx:else bindtap="symbol">
+          <image class="eye" src="/images/password-password-.png"></image>
+        </view>
+      </view>
+
+      <!-- 错误 -->
+      <view class="mistake" wx:if="{{mistake == true}}">手机号或密码输入有误,请重新输入</view>
+
+      <button class="regbut {{disabledtj == false?'redbut':''}}" open-type="getUserInfo" disabled="{{disabledtj}}" bindgetuserinfo="gain">登录</button>
+    </form>
+
+    <!-- 短信登录 忘记密码 -->
+
+    <view class="tclick">
+      <view class="note" bindtap="noteclick">短信登录</view>
+      <view class="forget" bindtap="forgetclick">忘记密码?</view>
+    </view>
+
+    <!-- 新用户 -->
+    <view class="new_user" bindtap="loginred">新用户?来<span class="loginred">注册</span>一下吧!</view>
+    <view class="explain">登录即代表同意商城<span class="privacy">隐私政策</span>和<span class="clause">用户条款</span></view>
+  </view>
+
+  
+</view>

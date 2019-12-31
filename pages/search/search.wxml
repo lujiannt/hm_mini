@@ -1,0 +1,36 @@
+<!-- 搜索页 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="headnav" page-name="搜索"></navbar>
+
+  <view class="page-content">
+
+    <!-- 搜索框 -->
+    <view class="search_box">
+      <input class="search_box_input" type="text" placeholder="搜索商品" placeholder-class="search_box_place" focus="true" confirm-type="search" bindinput="importval" bindchange="importchange" value='{{inputValue}}'></input>
+      <button class="search_box_but" bindtap="search_val">搜索</button>
+    </view>
+
+    <!-- 历史搜索 -->
+    <view class="history_search">
+      <view class="history_search_wz">历史搜索</view>
+      <view class="history_search_click" bindtap="clearSearchStorage">
+        <image class="history_search_img" src="/images/remove.png"></image>
+      </view>
+      
+    </view>
+
+    <view class="history" wx:for="{{getSearch}}" wx:key="index" bindtap="click_val" data-name="{{item}}">{{item}}</view>
+    <view style="clear:both"></view>
+
+    <!-- 热门搜索 -->
+    <view class="hot_search_title">热门搜索</view>
+
+    <view class="history" wx:for="{{hot_search}}" wx:key="index" bindtap="click_val" data-name="{{item}}">{{item}}</view>
+    <view style="clear:both"></view>
+    
+
+
+  </view>
+
+</view>

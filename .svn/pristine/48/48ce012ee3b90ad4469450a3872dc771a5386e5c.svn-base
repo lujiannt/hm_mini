@@ -1,0 +1,82 @@
+/* pages/add_address/add_address.wxss */
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 130rpx;
+}
+
+.add_address_img{
+  width: 320rpx;
+  height: 300rpx;
+  display: block;
+  margin: 330rpx auto 40rpx auto;
+}
+
+.add_char{
+  margin: 0 0 120rpx 0;
+  text-align: center;
+  font-size: 32rpx;
+  color: #808080;
+}
+
+/* 添加地址按钮 */
+.add_address{
+  width: 560rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #de4040;
+  font-size: 28rpx;
+  color: #ffffff;
+  text-align: center;
+  margin: 200rpx auto 0 auto;
+}
+
+
+/* 添加地址 */
+.con_all{
+  margin-top: 170rpx;
+}
+.consignee{
+  width: 700rpx;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+  padding-bottom: 30rpx;
+  margin: 0 auto 50rpx auto;
+}
+.title{
+  font-size: 28rpx;
+  color: #333333;
+  margin: 0 60rpx 0 50rpx;
+}
+.inp_val{
+  font-size: 28rpx;
+  color: #333333;
+  width: 450rpx;
+}
+.inp_val_pla{
+  font-size: 28rpx;
+  color: #b3b3b3;
+}
+
+.title2{
+  font-size: 28rpx;
+  color: #333333;
+  margin: 0 30rpx 0 50rpx;
+}
+
+.con_img{
+  width: 20rpx;
+  height: 26rpx;
+  margin: 0 10rpx 0 0;
+}

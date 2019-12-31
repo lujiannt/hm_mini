@@ -1,0 +1,16 @@
+<!-- 昵称 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="昵称"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <input class="nickname" placeholder="请输入昵称" value="{{nickname}}" bindblur="amend_name"></input>
+    
+    <view class="remove" bindtap="remove">
+      <image class="xpng" src="/images/x.png"></image>
+    </view>
+
+  </view>
+
+</view>

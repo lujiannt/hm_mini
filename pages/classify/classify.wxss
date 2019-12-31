@@ -1,0 +1,96 @@
+/* pages/classify/classify.wxss */
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 130rpx;
+}
+
+/* 搜索商品 */
+
+.search_box{
+  width: 700rpx;
+  height: 67rpx;
+  line-height: 67rpx;
+  margin: 120rpx auto 20rpx auto;
+  border-radius: 33rpx;
+  background-color: #fafafa;
+  border: 1px solid #cccccc;
+}
+
+.search_char{
+  font-size: 28rpx;
+  color: #808080;
+  margin-left: 70rpx;
+}
+
+/* 分类 */
+.classfiy_all{
+  display: flex;
+  justify-content: space-between;
+}
+
+.left_classfiy{
+  width: 160rpx;
+  background-color: #f7f7f7;
+}
+.first_level{
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+
+}
+.first_level_wz{
+  font-size: 28rpx;
+  color: #333333;
+  text-align: center;
+  height: 48rpx;
+  line-height: 48rpx;
+  overflow: hidden;
+  width: 160rpx;
+  /* border-right: 7rpx solid #de4040; */
+}
+.active{
+  border-right: 7rpx solid #de4040;
+  font-size: 28rpx;
+  color: #de4040;
+}
+
+/* 右_二三级分类 */
+
+.right_classfiy{
+  width: 580rpx;
+  margin: 20rpx 0 0 0;
+}
+.second_level{
+  margin: 60rpx 0 0 60rpx;
+}
+.second_level-wz{
+  font-size: 28rpx;
+  color: #333333;
+  margin: 0 0 30rpx 0;
+}
+
+.three-level{
+  float: left;
+  margin-right: 40rpx;
+  margin-bottom: 40rpx;
+}
+.three-level_img{
+  width: 126rpx;
+  height: 126rpx;
+  margin-bottom: 20rpx;
+}
+.three-level_wz{
+  font-size: 24rpx;
+  color: #808080;
+  text-align: center;
+}

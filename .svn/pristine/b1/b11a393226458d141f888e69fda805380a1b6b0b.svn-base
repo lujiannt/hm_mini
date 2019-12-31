@@ -1,0 +1,85 @@
+<!-- 支付 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="购物车"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 地址 -->
+    <view class="site">
+
+      <image class="site_img" src="/images/site.png"></image>
+
+      <view class="site_char">地址为空,赶紧去添加吧~~~</view>
+
+      <image class="site_right" src="/images/commodity_details/arrow.png"></image>
+
+    </view>
+
+    <view style="width:700rpx;margin:0 auto 0 auto;background-color:#ffffff;">
+
+      <!-- 确定购买商品 -->
+      <view class="buy_goods" wx:for="{{buy_goods}}" wx:key="index">
+        <image class="buy_goods_img" src="{{item.picPath}}"></image>
+        <view class="buy_goods_right">
+          <view class="buy_goods_name">{{item.goodname}}</view>
+
+          <!-- 属性 -->
+          <span class="buy_goods_pro">{{item.pro_title}}</span>
+
+          <view class="buy_pr_qu">
+            <view class="buy_goods_price">￥{{item.goodprice/100}}</view>
+            <view class="buy_goods_quality">×{{item.quality}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 支持 -->
+      <view class="support">支持7天无理由退货</view>
+
+      <!-- 运费 -->
+      <view class="freight">
+        <view class="freight_char">运费</view>
+
+        <block wx:if="{{shipFeeList == ''}}">
+          <view class="freight_right">
+            <view class="freight_right_name">包邮</view>
+            <image class="freight_img" src="/images/commodity_details/arrow.png"></image>
+          </view>
+        </block>
+
+        <view class="freight_right" wx:else>
+          <view class="freight_right_name">顺丰快递</view>
+          <view class="freight_right_pri">￥5.00</view>
+          <image class="freight_img" src="/images/commodity_details/arrow.png"></image>
+        </view>
+
+      </view>
+
+      <!-- 留言 -->
+      <view class="leave">
+        <view class="leave_char">留言: </view>
+        <input class="leave_word" placeholder="给商家留言,最多100个字符" placeholder-class="pl_leave_word" maxlength="100"></input>
+
+      </view>
+
+      <!-- 总价 -->
+      <view class="pay_price">总价: ￥{{pay_price}}</view>
+
+    </view>
+
+    <!-- 底部提交订单 -->
+    <view class="submit_order">
+      <view class="sub_left">共{{buy_goods.length}}件商品</view>
+      <view class="sub_right">
+        <view class="total">合计: </view>
+        <view class="sub_pri">￥{{pay_price}}</view>
+        <view class="but_submit_order">提交订单</view>
+      </view>
+    </view>
+
+
+
+  </view>
+
+</view>

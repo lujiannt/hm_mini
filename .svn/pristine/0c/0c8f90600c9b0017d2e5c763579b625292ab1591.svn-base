@@ -1,0 +1,47 @@
+/* component/head-navbar/head-navbar.wxss */
+.navbar {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+}
+.all{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  line-height: 46px;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  color: #333;
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 32rpx;
+}
+.fan{
+  width: 90rpx;
+  height: 90rpx;
+  line-height: 110rpx;
+}
+.retun{
+  width: 30rpx;
+  height: 43rpx;
+  margin-left: 38rpx;
+}
+.navbar-title {
+  width: 100%;
+  height: 46px;
+  line-height: 46px;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: white;
+  color: #333;
+  font-size: 30rpx;
+  text-align: center;
+  margin-right: 81rpx;
+}

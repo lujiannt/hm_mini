@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navbar": "/component/normalnavbar/normalnavbar"
+  },
+  "enablePullDownRefresh": true
+}

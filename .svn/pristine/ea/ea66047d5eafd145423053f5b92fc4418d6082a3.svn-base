@@ -1,0 +1,68 @@
+<!--component/Shopping_bounced/Shopping_bounced.wxml-->
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+
+  <view class="bottom-dialog-body" wx:if="{{buy == true}}">
+
+    <view class="join_header">
+      <image class="join_img" src="{{attr_header.itemImage}}"></image>
+      <view class="join_right">
+        <view class="join_price">￥{{attr_header.goodPrice/100}}</view>
+        <view class="join_stock">库存：{{attr_header.goodStock}}件</view>
+        <view class="property_title"><span wx:if="{{select == false}}">请选择</span>{{property_title}}</view>
+      </view>
+    </view>
+
+    <block wx:for="{{p_arr}}" wx:key="index" wx:for-item="p_i">
+      <view class="p_arr">{{p_i.value}}</view>
+
+      <block wx:for="{{attrArr}}" wx:key="index">
+        <view wx:for="{{item}}" wx:key="index" wx:for-item="attribute" style="display: inline-block;">
+
+          <view wx:if="{{attribute.pid == p_i.id}}" class="attribute {{attribute.actived == true?'attr':''}}" data-attr="{{attribute.id}}" data-index="{{index}}" data-pid="{{attribute.pid}}"  bindtap="click_attr">{{attribute.value}}</view>
+
+          <view style="clear:both;"></view>
+        </view>
+      </block>
+
+    </block>
+
+    <view class="bgc">
+
+      <view class="join_num">
+        <view class="join_num_char">数量</view>
+
+        <!-- 加减号 -->
+
+        <view class="add_minus">
+          <view class="less_minus {{goods_num >1?'minus':''}}" bindtap="subtract">-</view>
+          <view class="goods_num">{{goods_num}}</view>
+          <view class="add" bindtap="add">+</view>
+        </view>
+
+      
+      </view>
+
+      <view class="two_but">
+        <button class="add_to_car {{check == false?'check_left':''}}" disabled="{{check}}" open-type="getUserInfo" bindgetuserinfo="add_to_car">加入购物车</button>
+        <button class="buy_now {{check == false?'check_right':''}}" disabled="{{check}}" open-type="getUserInfo" bindgetuserinfo="buy_now">立即购买</button>
+      
+      </view>
+    
+    </view>
+    
+  </view>
+
+  <view class="bottom-dialog-body" wx:if="{{explain == true}}">
+    <view class="deliver_to">送至</view>
+
+    <view class="state" wx:for="{{declare}}" wx:key="index">
+      <view class="left">{{item.itemName}}</view>
+      <view class="right">{{item.itemValue}}</view>
+      <view style="clear:both"></view>
+    </view>
+
+    
+  </view>
+
+</view>

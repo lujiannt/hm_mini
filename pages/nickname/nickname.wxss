@@ -1,0 +1,37 @@
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 130rpx;
+}
+
+.nickname{
+  width: 650rpx;
+  margin: 189rpx auto 0 auto;
+  border-bottom: 1px solid #b3b3b3;
+  padding: 0 50rpx 24rpx 25rpx;
+  position: relative;
+  font-size: 28rpx;
+  color: #333333;
+}
+.remove{
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  top:-20rpx;
+  right: 30rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+.xpng{
+  width: 36rpx;
+  height: 36rpx;
+}

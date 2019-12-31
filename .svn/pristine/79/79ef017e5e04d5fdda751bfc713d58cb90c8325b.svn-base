@@ -1,0 +1,270 @@
+//index.js
+//获取应用实例
+const app = getApp()
+var configuration = require('../../configuration/configuration.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+    // 轮播图数据
+    imgUrls:[
+      { img: "/images/banner.png" }, { img: "/images/banner.png" }, { img: "/images/banner.png" }, { img: "/images/banner.png" },
+    ],
+
+    // 轮播图控制
+    indicatordots: true,
+    autoplay: true,
+    circular: true,
+    beforeColor: "white",//指示点颜色
+    afterColor: "#dbdbdb",//当前选中的指示点颜色
+    faceColor:"#e6e6e6",
+    faceafterColor:"#999999",
+
+
+    // 跳转分类
+    skip_img:[
+      { img: "/images/icon/newproducts.png"},
+      { img: "/images/icon/hot.png" },
+      { img: "/images/icon/popular.png" },
+      { img: "/images/icon/signin.png" },
+      { img: "/images/icon/vip.png" },
+    ],
+
+    // 限时购
+    time_to_buy:[
+      { img: "/images/time_to_buy/test1.png", original_price: "19990", selling_price:"9900"},
+      { img: "/images/time_to_buy/test2.png", original_price: "10950", selling_price: "3650"},
+    ],
+
+    // 缤纷活动
+    face_activity:[
+      {
+        banner_img:"/images/face_activity/activity-banner.png",
+        article:[
+          { img: "/images/face_activity/activity-1.png", name: "秋冬新品带帽aaaaaaaa", price:"57100" },
+          { img: "/images/face_activity/activity-2.png", name: "女装宽松休闲运动服", price: "8800"},
+          { img: "/images/face_activity/activity-3.png", name: "冬季连帽外套假两件", price: "72900"},
+        ],
+      },
+      {
+        banner_img: "/images/face_activity/activity-banner.png",
+        article: [
+          { img: "/images/face_activity/activity-1.png", name: "秋冬新品带帽aaaaaaaa", price: "57100" },
+          { img: "/images/face_activity/activity-2.png", name: "女装宽松休闲运动服", price: "8800" },
+          { img: "/images/face_activity/activity-3.png", name: "冬季连帽外套假两件", price: "72900" },
+        ],
+      },
+      {
+        banner_img: "/images/face_activity/activity-banner.png",
+        article: [
+          { img: "/images/face_activity/activity-1.png", name: "秋冬新品带帽aaaaaaaa", price: "57100" },
+          { img: "/images/face_activity/activity-2.png", name: "女装宽松休闲运动服", price: "8800" },
+          { img: "/images/face_activity/activity-3.png", name: "冬季连帽外套假两件", price: "72900" },
+        ],
+      },
+    ],
+
+    // 精选好货
+    sift:[
+      { img: "/images/sift/selected-1.png", name: "新品秋冬毛衣女加厚小披肩长袖", price: "41200" },
+      { img: "/images/sift/selected-2.png", name: "冬季新品简约翻领摇粒绒单套装", price: "63900" },
+      { img: "/images/sift/selected-3.png", name: "冬季宽松翻领飞行员羽绒短款外套", price: "98500" },
+      { img: "/images/sift/selected-4.png", name: "冬季新款羽绒服女款韩版宽松中国风套装", price: "98500" },
+      { img: "/images/sift/selected-1.png", name: "新品秋冬毛衣女加厚小披肩长袖", price: "41200" },
+      { img: "/images/sift/selected-2.png", name: "冬季新品简约翻领摇粒绒单套装", price: "63900" },
+      { img: "/images/sift/selected-3.png", name: "冬季宽松翻领飞行员羽绒短款外套", price: "98500" },
+      { img: "/images/sift/selected-4.png", name: "冬季新款羽绒服女款韩版宽松中国风套装", price: "98500" },
+    ],
+
+    // view_more:false, //查看更多
+
+    // 好物推荐
+    recommend:[
+      { img: "/images/recommend/eecommend-1.png", name: "范姿外套冬女新款潮时尚洋气中长款白鸭绒小清新羽绒服", price: "56200", payment: "20158"},
+      { img: "/images/recommend/eecommend-2.png", name: "范姿外套冬女新款潮时尚洋气中长款白鸭绒小清新羽绒服", price: "158700", payment: "20158"},
+      { img: "/images/recommend/eecommend-1.png", name: "范姿外套冬女新款潮时尚洋气中长款白鸭绒小清新羽绒服", price: "56200", payment: "20158"},
+      { img: "/images/recommend/eecommend-2.png", name: "范姿外套冬女新款潮时尚洋气中长款白鸭绒小清新羽绒服", price: "158700", payment: "20158"},
+      { img: "/images/recommend/eecommend-1.png", name: "范姿外套冬女新款潮时尚洋气中长款白鸭绒小清新羽绒服", price: "56200", payment: "20158"},
+      { img: "/images/recommend/eecommend-2.png", name: "范姿外套冬女新款潮时尚洋气中长款白鸭绒小清新羽绒服", price: "158700", payment: "20158"},
+    ],
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+    // 热搜
+    wx.request({
+      url: configuration.test + '/mini/goods/listHotSearch',
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        num: 4
+      },
+      success: res => {
+        console.log(res, "rrr")
+
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            top_search:res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        console.log(req, "qqq")
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+
+
+    //相关推荐
+    wx.request({
+      url: configuration.test + '/mini/order/favGoodsList',
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        userid: wx.getStorageSync('userinfo').id,
+        limit: 6,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            recommend: res.data.data
+          })
+        } else {
+          // wx.showToast({
+          //   title: '系统错误,请稍后',
+          //   icon: 'none',
+          //   duration: 1000,
+          // });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+
+  },
+
+  // 精选好货查看更多
+  // rightmost:function(e){
+  //   console.log(e,"eeeeee")
+  //   if (e.detail.direction == "right"){
+  //     this.setData({
+  //       view_more:true
+  //     })
+  //   }
+  // },
+
+  // 监听页面滚动事件
+  onPageScroll: function (e) {
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
+
+  // 跳转搜索页面
+  jump_search:function(e){
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
+
+  //点击搜索
+  click_val: function (e) {
+    wx.navigateTo({
+      url: '/pages/productList/productList?inputValue=' + e.currentTarget.dataset.name,
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

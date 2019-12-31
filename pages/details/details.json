@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navbar": "/component/headnavbar/headnavbar",
+    "pop-up": "/component/Shopping_bounced/Shopping_bounced"
+  }
+}

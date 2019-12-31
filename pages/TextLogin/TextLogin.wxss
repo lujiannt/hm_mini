@@ -1,0 +1,169 @@
+/* pages/TextLogin/TextLogin.wxss */
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  height: 85%;
+  margin-top: 120rpx;
+}
+
+.phone_number{
+  width: 500rpx;
+  height: 96rpx;
+  margin: 0 auto 50rpx auto;
+  padding-left: 100rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #333;
+}
+.pl_phone_number{
+   font-size: 30rpx;
+  color: #ccc;
+}
+
+.enter_password{
+  width: 500rpx;
+  height: 96rpx;
+  margin: 0 auto;
+  padding-left: 100rpx;
+  color: black;
+  font-size: 30rpx;
+  border-bottom: 1px solid #333;
+}
+
+.pl_enter_password{
+   font-size: 30rpx;
+  color: #ccc;
+}
+.phone{
+  position: relative;
+  margin-top: 187rpx;
+}
+.icon-iphone{
+  position: absolute;
+  top: 30rpx;
+  left: 115rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.password{
+  position: relative;
+}
+
+.icon-lnvitation{
+  position: absolute;
+  top: 30rpx;
+  left: 115rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.verification{
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 26rpx;
+  color: #fff;
+  background-color: #999999;
+  position: absolute;
+  top:30rpx;
+  right: 110rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.regbut{
+  width: 550rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #fff !important;
+  border-radius: 65rpx;
+  background-color: #cccccc !important;
+  margin: 80rpx auto 0 auto;
+}
+
+.redbut{
+  width: 550rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #fff !important;
+  border-radius: 65rpx;
+  margin: 80rpx auto 0 auto;
+  background-color: #de4040 !important;
+}
+
+.enter_password2{
+  width: 500rpx;
+  height: 96rpx;
+  margin: 187rpx auto 50rpx auto;
+  padding-left: 100rpx;
+  color: black;
+  font-size: 30rpx;
+  border-bottom: 1px solid #333;
+}
+
+.lock{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 115rpx;
+}
+
+.eye{
+  width: 32rpx;
+  height: 23rpx;
+}
+.password_error{
+  font-size: 26rpx;
+  color: #de4040;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.examine{
+  width: 96rpx;
+  height: 96rpx;
+  line-height: 96rpx;
+  position: absolute;
+  top: 0;
+  right: 80rpx;
+  z-index: 10;
+  text-align: center;
+}
+
+.amendwin-img{
+  width: 208rpx;
+  height: 208rpx;
+  margin: 70rpx 0 70rpx 36%;
+}
+
+.amendsuc{
+  font-size: 30rpx;
+  color: #de4040;
+  text-align: center;
+  margin-bottom: 130rpx;
+}
+
+.confirm_jump{
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #de4040;
+  color: #ffffff;
+  font-size: 30rpx;
+  text-align: center;
+  margin: 0 auto;
+}

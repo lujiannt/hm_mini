@@ -1,0 +1,10 @@
+<!--components/navbar/index.wxml-->
+<view class="navbar">
+  <view class="all" >
+    <view class="fan" bindtap="returns">
+      <image class="retun" src="/images/retun.png"></image>
+    </view>
+    
+    <view class='navbar-title'>{{pageName}}</view>
+  </view>
+</view>

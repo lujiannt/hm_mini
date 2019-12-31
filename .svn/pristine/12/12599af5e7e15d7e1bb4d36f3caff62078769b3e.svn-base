@@ -1,0 +1,44 @@
+<!-- 分类 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="分类"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 搜索商品 -->
+    <view class="search_box" bindtap="jump_search">
+      <span class="search_char">搜索商品</span>
+    </view>
+
+    <!-- 分类 -->
+    <view class="classfiy_all">
+
+      <!-- 左_一级分类 -->
+      <view class="left_classfiy">
+        <view class="first_level" wx:for="{{first_level}}" wx:key="index" data-index="{{index}}" data-id="{{item.id}}" bindtap="tapKind">
+          <view class="first_level_wz {{selectedIndex == index ? 'active': ''}}">{{item.c_name}}</view>
+        </view>
+      </view>
+
+      <!-- 右_二三级分类 -->
+      <view class="right_classfiy">
+        <!-- 二级分类 -->
+        <view class="second_level" wx:for="{{second_level}}" wx:key="index">
+          <view class="second_level-wz">{{item.c_name}}</view>
+
+          <!-- 三级分类 -->
+          <view class="three-level" wx:for="{{item.children}}" wx:key="index" wx:for-item="every" bindtap="click_val" data-name="{{every.c_name}}">
+            <image class="three-level_img" src="{{every.icon}}"></image>
+            <view class="three-level_wz">{{every.c_name}}</view>
+          </view>
+          <view style="clear:both"></view>
+        
+        </view>
+      </view>
+
+    </view>
+
+
+  </view>
+
+</view>

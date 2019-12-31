@@ -1,0 +1,182 @@
+<!-- 商品详情 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="headnav" page-name="商品详情"></navbar>
+
+  <view class="page-content">
+
+    <!-- 商品banner -->
+    <swiper indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" circular='{{circular}}' indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" class="slideshow">
+      <block wx:for="{{imgUrls}}" wx:key="index">
+        <swiper-item data-index="{{index}}" style="border-radius: 50rpx;">
+          <image src='{{item}}' class='slide-image' data-index='{{index}}' lazy-load="true"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 商品名称 -->
+    <view class="product_name">
+      <view class="product_name_char">{{details.goodName}}</view>
+
+      <!-- 收藏分享 -->
+      <view class="collect_share">
+
+        <view class="collect" wx:if="{{isCollect == false}}" bindtap="collect">
+          <image class="collect_img" src="/images/commodity_details/collection.png"></image>
+        </view>
+
+        <view class="collect" wx:else bindtap="cancel_collect">
+          <image class="collect_img" src="/images/commodity_details/collection-red.png"></image>
+        </view>
+
+        <button class="share" open-type="share">
+          <image class="share_img" src="/images/commodity_details/share.png"></image>
+        </button>
+
+      </view>
+
+    </view>
+
+    <!-- 商品价格、月销 -->
+    <view class=" commodity_prices_sell">
+      <view class="commodity_prices">
+        <span class="selling_price">￥{{goods_price/100}}</span>
+        <!-- <span class="original_cost">{{}}</span> -->
+      </view>
+
+      <view class="sell">月销：{{details.saleNum}}+</view>
+
+    </view>
+
+    <!-- 商品标语 -->
+    <view class="goods_slogan">
+      <span class="slogan">会员福利</span>
+      <view class="square"></view>
+      <span class="slogan">急速发货</span>
+      <view class="square"></view>
+      <span class="slogan">售后保障</span>
+    </view>
+
+    <view class="boundary"></view>
+
+    <!-- 选择 -->
+    <view class="select" bindtap="add_cart">
+      <view class="select_left">
+        <view class="select_left_border">
+          <span class="select_left_char">选择</span>
+        </view>
+        <image class="select_left_img" src="{{attr_itemImage}}"></image>
+        <view class="attr_itemValues">【{{attr_itemValues}}】</view>
+
+      </view>
+
+      <image class="select-right" src="/images/commodity_details/arrow.png"></image>
+
+    </view>
+
+    <!-- 说明 -->
+    <view class="select2" bindtap="state">
+      <view class="select_left">
+        <view class="select_left_border">
+          <span class="select_left_char">选择</span>
+        </view>
+        <view class="explain">说明</view>
+
+
+      </view>
+
+      <image class="select-right" src="/images/commodity_details/arrow.png"></image>
+
+    </view>
+
+    <view class="boundary"></view>
+
+    <!-- 商品评价 -->
+    <view class="evaluate_header">
+      <view class="evaluate_header_left">
+        <view class="left_char">商品评价</view>
+        <view class="left_num">(1000+)</view>
+      </view>
+
+      <view class="evaluate_header_right">
+        <view class="right_Praise">好评98.7%</view>
+        <image class="right_img" src="/images/commodity_details/arrow.png"></image>
+      </view>
+
+    </view>
+
+
+    <scroll-view scroll-x="true" class="comment-scroll" enable-flex="true">
+
+      <view wx:for="{{comment}}" wx:key="index" class="comment_all">
+        <view class="comment_user">
+          <image class="comment_img" src="{{item.img}}"></image>
+          <span class="comment_name">{{item.name}}</span>
+        </view>
+        <view class="evaluate">{{item.evaluate}}</view>
+      </view>
+
+    </scroll-view>
+
+    <!-- 相关推荐 -->
+
+    <view class="bgac">
+
+      <view class="recommend_char">相关推荐</view>
+
+      <view class="recommend">
+        <view class="recommend_all" wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}">
+          <image class="recommend_img" src="{{item.picPath}}"></image>
+          <view class="recommend_name">{{item.goodName}}</view>
+          <view class="recommend_price">￥{{item.goodprice/100}}</view>
+        </view>
+        <view style="clear:both"></view>
+
+      </view>
+    </view>
+
+    <!-- 商品大图介绍 -->
+
+    <view class="goods_bigimg">{{details.goodDesc}}</view>
+
+    <!-- 大图下文字 -->
+    <view class="char_28">价格说明</view>
+    <view class="char_24">划线价格</view>
+    <view class="char_2480">商品的专柜价、吊牌价、正品零售价。厂商指导价或该商品的曾经展示过的销售价等，并费原价，仅供参考。</view>
+    <view class="char_24">未划线价格</view>
+    <view class="char_248080">商品的实际价格，不因表述的差异改变性质。具体成交价格根据商品参加活动、或使用优惠券、积分等发生变化。最终以订单结算页价格为准。</view>
+
+    <!-- 底部固定导航栏 -->
+
+    <view class="goods_tabbar">
+
+      <view class="goods_tabbar_left">
+        <!-- 首页 -->
+        <view class="home_page" bindtap="jump_home">
+          <image class="home_page_img" src="/images/commodity_details/home.png"></image>
+          <view class="home_page_char">首页</view>
+        </view>
+        <!-- 购物车 -->
+        <view class="trolley" bindtap="jump_shopping">
+          <image class="home_page_img" src="/images/commodity_details/shop.png"></image>
+          <view class="home_page_char">购物车</view>
+        </view>
+      </view>
+
+      <view class="goods_tabbar_right">
+        <view class="join_trolley" bindtap="add_cart">加入购物车</view>
+        <view class="immediately" bindtap="add_cart">立即购买</view>
+      </view>
+
+      <pop-up id="pop-up" hideModal="{{hideModal}}" buy="{{buy}}" explain="{{explain}}" declare="{{declare}}" attr_header="{{attr_header}}" property_title="{{property_title}}" p_arr="{{p_arr}}" attrArr="{{attrArr}}" goodsid="{{goodsid}}"></pop-up>
+
+
+    </view>
+
+
+
+
+  </view>
+
+
+</view>

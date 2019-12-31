@@ -1,0 +1,386 @@
+// pages/login/login.js
+const app = getApp()
+var configuration = require('../../configuration/configuration.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    currentTime: 60,
+    dclick: true,
+    newcode: "",
+    isshow1: true,
+    isshow2: true,
+    newPassword1: "",
+    newPassword2: "",
+    inv_num: "",
+    disabledlog: true,
+    loginwin: false,
+    password_error: false,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+
+  },
+
+  //验证 
+  phone_number: function(e) {
+    this.data.phonenum = e.detail.value
+    if (/^1[34578]\d{9}$/.test(this.data.phonenum) && this.data.newcode != '' && this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      this.setData({
+        disabledlog: false,
+      })
+    }
+  },
+  code1: function(e) {
+    this.setData({
+      newcode: e.detail.value,
+    })
+    if (/^1[34578]\d{9}$/.test(this.data.phonenum) && this.data.newcode != '' && this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      this.setData({
+        disabledlog: false,
+      })
+    }
+  },
+
+
+  // 获取验证码
+  getcode: function(e) {
+
+    //获取验证码
+    wx.request({
+      url: configuration.HOST + '/mini/member/getCode',
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        template: 0,
+        phone: this.data.phonenum,
+      },
+      success: res => {
+        console.log(res, "rrr")
+
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          var that = this;
+          var currentTime = that.data.currentTime;
+          that.data.token = res.data.data.token
+          that.setData({
+            time: currentTime + '秒后重发',
+            dclick: false,
+          })
+          var interval = setInterval(function() {
+            that.setData({
+              time: (currentTime - 1) + '秒后重发'
+            })
+            currentTime--;
+            if (currentTime <= 0) {
+              clearInterval(interval)
+              that.setData({
+                dclick: true,
+                currentTime: 60,
+              })
+            }
+          }, 1000)
+        } else if (res.data.code == 400) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1500,
+          });
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        console.log(req, "qqq")
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+
+
+
+
+  },
+
+
+
+  // 设置密码
+
+  figure: function(e) {
+    this.setData({
+      isshow1: false,
+    })
+  },
+  symbol: function(e) {
+    this.setData({
+      isshow1: true,
+    })
+  },
+
+  password1: function(e) {
+    this.setData({
+      newPassword1: e.detail.value,
+    })
+    if (/^1[34578]\d{9}$/.test(this.data.phonenum) && this.data.newcode != '' && this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      this.setData({
+        disabledlog: false,
+      })
+    }
+  },
+  password2: function(e) {
+    this.setData({
+      newPassword1: e.detail.value,
+    })
+    if (/^1[34578]\d{9}$/.test(this.data.phonenum) && this.data.newcode != '' && this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      this.setData({
+        disabledlog: false,
+      })
+    }
+  },
+
+  notarize: function(e) {
+    if (this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      if (this.data.newPassword1 != this.data.newPassword2) {
+        this.setData({
+          password_error: true,
+        })
+      } else {
+        this.setData({
+          password_error: false,
+        })
+      }
+    } else {
+      this.setData({
+        password_error: false,
+      })
+    }
+
+  },
+
+  // 查看密码
+
+  figure2: function(e) {
+    this.setData({
+      isshow2: false,
+    })
+  },
+  symbol2: function(e) {
+    this.setData({
+      isshow2: true,
+    })
+  },
+
+  password3: function(e) {
+    this.setData({
+      newPassword2: e.detail.value,
+    })
+    if (/^1[34578]\d{9}$/.test(this.data.phonenum) && this.data.newcode != '' && this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      this.setData({
+        disabledlog: false,
+      })
+    }
+  },
+  password4: function(e) {
+    this.setData({
+      newPassword2: e.detail.value,
+    })
+    if (/^1[34578]\d{9}$/.test(this.data.phonenum) && this.data.newcode != '' && this.data.newPassword1 != '' && this.data.newPassword2 != '') {
+      this.setData({
+        disabledlog: false,
+      })
+    }
+  },
+
+  // 邀请码
+  invitation: function(e) {
+    console.log(e)
+    if (e.detail.value) {
+      this.setData({
+        inv_num: e.detail.value,
+      })
+    } else {
+      this.setData({
+        inv_num: '',
+      })
+    }
+
+  },
+
+
+
+
+
+  // 注册
+  gain: function(e) {
+    console.log(e, "ee")
+    // app.globalData.avatarUrl = e.detail.userInfo.avatarUrl
+    // app.globalData.gender = e.detail.userInfo.gender
+    // app.globalData.nickName = e.detail.userInfo.nickName
+    // wx.setStorageSync("avatarUrl", app.globalData.avatarUrl)
+    // wx.setStorageSync("gender", app.globalData.gender)
+    // wx.setStorageSync("nickName", app.globalData.nickName)
+    var that = this
+    // wx.showLoading({
+    //   title: '注册中',
+    // })
+    wx.login({
+      success: function(res) {
+        console.log(res, "rrr")
+
+        wx.request({
+          url: 'https://api.weixin.qq.com/sns/jscode2session',
+          method: "GET",
+          data: {
+            appid: app.globalData.appid,
+            secret: app.globalData.appSecret,
+            js_code: res.code,
+            grant_type: 'authorization_code',
+
+          },
+          success: res => {
+            console.log(res, "rrr123213213")
+            wx.setStorageSync("openid", res.data.openid)
+            console.log(wx.getStorageSync('openid'),"openid")
+            wx.request({
+              url: configuration.HOST + '/mini/member/register',
+              method: "POST",
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              data: {
+                phone: that.data.phonenum,
+                password: that.data.newPassword2,
+                code: that.data.newcode,
+                advsid: that.data.inv_num,
+                nickName: e.detail.userInfo.nickName,
+                headimg: e.detail.userInfo.avatarUrl,
+                openId: res.data.openid,
+                token: that.data.token,
+              },
+              success: res => {
+                console.log(res, "rrr")
+
+                if (res.statusCode != 200) {
+                  wx.showToast({
+                    title: '系统错误,请稍后',
+                    icon: 'none',
+                    duration: 1000,
+                  });
+                }
+
+                if (res.data.code == 200) {
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1000,
+                  });
+                  that.setData({
+                    loginwin: true
+                  })
+                } else if (res.data.code == 400) {
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1500,
+                  });
+                }else {
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none',
+                    duration: 1000,
+                  });
+                }
+
+              },
+            })
+
+          },
+        })
+
+      }
+    })
+
+
+
+  },
+
+
+  // 注册成功跳转
+  confirm_jump: function(e) {
+    wx.redirectTo({
+      url: '/pages/register/register',
+    })
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  }
+})

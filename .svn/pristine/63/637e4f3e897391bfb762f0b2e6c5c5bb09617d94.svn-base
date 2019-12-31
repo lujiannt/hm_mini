@@ -1,0 +1,398 @@
+// pages/shopping/shopping.js
+const app = getApp()
+var configuration = require('../../configuration/configuration.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    regulate: false,
+    but_set:true,
+    check_all: "/images/shopping/k_choice.png",
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+
+    // 获取购物车商品
+    wx.request({
+      url: configuration.test + '/mini/order/shopcartList',
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        userid: wx.getStorageSync('userinfo').id,
+        pageSize: 100,
+      },
+      success: res => {
+        console.log(res, "rrr")
+
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          var orderCartlist = res.data.data.rows
+
+          for (var i = 0; i < orderCartlist.length; i++) {
+            orderCartlist[i].select = false
+
+            var title = '';
+
+            for (var m = 0; m < orderCartlist[i].g_itemvalues.split('-').length; m++) {
+              title += orderCartlist[i].g_itemvalues.split('-')[m] + ":" + "\xa0" + orderCartlist[i].itemvalues.split('-')[m] + "\xa0\xa0\xa0";
+            }
+            orderCartlist[i].pro_title = title
+
+
+          }
+
+          this.setData({
+            rows: orderCartlist,
+          })
+
+          console.log(this.data.rows, "rrr")
+
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        console.log(req, "qqq")
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+
+    //相关推荐
+    wx.request({
+      url: configuration.test + '/mini/order/favGoodsList',
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        userid: wx.getStorageSync('userinfo').id,
+        limit: 6,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            recommend: res.data.data
+          })
+        } else {
+          // wx.showToast({
+          //   title: '系统错误,请稍后',
+          //   icon: 'none',
+          //   duration: 1000,
+          // });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+
+  },
+
+
+  // 去登陆
+  to_login: function(e) {
+    wx.navigateTo({
+      url: '/pages/register/register',
+    })
+  },
+
+  // 选择商品
+  choose:function(e){
+    console.log(this.data.rows)
+    for (var i = 0; i < this.data.rows.length; i++) {
+      if (e.currentTarget.dataset.id == this.data.rows[i].id) {
+        if (this.data.rows[i].select == false){
+          this.data.rows[i].select = true
+          console.log(this.data.rows[i].select,"11")
+        }else{
+          this.data.rows[i].select = false
+          console.log(this.data.rows[i].select,"22")
+        }
+      }
+    }
+
+    this.setData({
+      rows:this.data.rows
+    })
+
+  },
+
+  // 管理
+  finish:function(e){
+    if (this.data.regulate == true){
+      this.setData({
+        regulate: false,
+      })
+    }else{
+      this.setData({
+        regulate: true,
+      })
+    }
+
+  },
+
+  // 加减
+  add:function(e){
+    console.log(e)
+    for (var i = 0; i < this.data.rows.length;i++){
+      if (e.currentTarget.dataset.id == this.data.rows[i].id){
+        this.data.rows[i].quality = this.data.rows[i].quality + 1
+      }
+    }
+    this.setData({
+      rows: this.data.rows,
+    })
+  },
+
+  subtract:function(e){
+    for (var i = 0; i < this.data.rows.length; i++) {
+      if (e.currentTarget.dataset.id == this.data.rows[i].id && this.data.rows[i].quality > 1) {
+        this.data.rows[i].quality = this.data.rows[i].quality - 1
+      }
+    }
+    this.setData({
+      rows: this.data.rows,
+    })
+  },
+
+  // 全选
+  c_all:function(e){
+    if (this.data.check_all == '/images/shopping/k_choice.png'){
+      this.setData({
+        check_all: '/images/shopping/choice.png'
+      })
+
+      for (var i = 0; i < this.data.rows.length; i++) {
+        this.data.rows[i].select = true
+      }
+
+      this.setData({
+        rows: this.data.rows,
+        but_set:false,
+      })
+
+    }else{
+      this.setData({
+        check_all: '/images/shopping/k_choice.png'
+      })
+      for (var i = 0; i < this.data.rows.length; i++) {
+        this.data.rows[i].select = false
+      }
+
+      this.setData({
+        rows: this.data.rows,
+        but_set: true,
+      })
+    }
+  },
+
+  // 猜你喜欢
+  hot_Sale:function(e){
+    console.log(e,"ee")
+    wx.navigateTo({
+      url: '/pages/details/details?id=' + e.currentTarget.dataset.id,
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+
+    if (wx.getStorageSync('userinfo') == '' || wx.getStorageSync('userinfo') == undefined || wx.getStorageSync('userinfo') == null) {
+      this.setData({
+        no_login: true
+      })
+
+      if (wx.getStorageSync('openid') != '' && wx.getStorageSync('openid') != undefined && wx.getStorageSync('openid') != null) {
+        // 验证是否登录
+        wx.request({
+          url: configuration.test + '/mini/member/loginByWx',
+          method: "POST",
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {
+            openId: wx.getStorageSync('openid')
+          },
+          success: res => {
+            console.log(res, "rrr")
+
+            if (res.statusCode != 200) {
+              wx.showToast({
+                title: '系统错误,请稍后',
+                icon: 'none',
+                duration: 1000,
+              });
+            }
+
+            if (res.data.code == 200) {
+              wx.setStorageSync("userinfo", res.data.data)
+              this.setData({
+                no_login: false,
+              })
+
+              // 获取购物车商品
+              wx.request({
+                url: configuration.test + '/mini/order/shopcartList',
+                method: "POST",
+                header: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                  userid: res.data.data.id
+                },
+                success: res => {
+                  console.log(res, "rrr")
+
+                  if (res.statusCode != 200) {
+                    wx.showToast({
+                      title: '系统错误,请稍后',
+                      icon: 'none',
+                      duration: 1000,
+                    });
+                  }
+
+                  if (res.data.code == 200) {
+                    this.setData({
+                      rows: res.data.data.rows,
+                    })
+
+                  } else {
+                    wx.showToast({
+                      title: '系统错误,请稍后',
+                      icon: 'none',
+                      duration: 1000,
+                    });
+                  }
+
+                },
+                fail: req => {
+                  console.log(req, "qqq")
+                  wx.showToast({
+                    title: '系统错误,请稍后',
+                    icon: 'none',
+                    duration: 1000,
+                  });
+                }
+              })
+
+
+
+            } else {
+              wx.showToast({
+                title: '系统错误,请稍后',
+                icon: 'none',
+                duration: 1000,
+              });
+            }
+
+          },
+          fail: req => {
+            console.log(req, "qqq")
+            wx.showToast({
+              title: '系统错误,请稍后',
+              icon: 'none',
+              duration: 1000,
+            });
+          }
+        })
+      } else {
+        this.setData({
+          no_login: true
+        })
+      }
+
+
+    } else {
+      this.setData({
+        no_login: false,
+      })
+
+
+
+
+
+    }
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  }
+})

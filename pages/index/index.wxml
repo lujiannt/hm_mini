@@ -1,0 +1,157 @@
+<!-- 首页 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="购物小程序" scrollTop="{{scrollTop}}"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 滚动显示搜索框 -->
+    <view wx:if="{{scrollTop > 395}}" class="roll_search">
+      <view class="roll_search_box" bindtap="jump_search">
+        <span class="search_char">搜索商品</span>
+      </view>
+    </view>
+
+
+    <!-- 上半部分 -->
+    <view class="upper" style="background-image:url(https://jshm.oss-cn-shanghai.aliyuncs.com/other/e4ee54b7f012da1a1afb56b17cb8454.png);background-size: 100% 100%;background-repeat: no-repeat;">
+      <!-- 搜索框 -->
+      <view class="search_box" bindtap="jump_search">
+        <span class="search_char">搜索商品</span>
+      </view>
+
+      <!-- 热搜 -->
+      <view class="top_search">热搜:
+        <span class="top_search_char" wx:for="{{top_search}}" wx:key="index" bindtap="click_val" data-name="{{item}}">{{item}}</span>
+      </view>
+
+      <!-- 轮播图 -->
+      <swiper indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" circular='{{circular}}' indicator-color="{{beforeColor}}" indicator-active-color="{{afterColor}}" class="slideshow">
+        <block wx:for="{{imgUrls}}" wx:key="index">
+          <swiper-item data-index="{{index}}">
+            <image src='{{item.img}}' class='slide-image' data-index='{{index}}' lazy-load="true"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <!-- 跳转分类 -->
+      <view class="skip_classify">
+        <image class="skip_classify_img" wx:for="{{skip_img}}" wx:key="index" src="{{item.img}}"></image>
+      </view>
+
+      <!-- 新用户专享 -->
+      <image class="new_user_exclusive" src="/images/user.png"></image>
+
+      <!-- 限时购、清仓特价 -->
+      <view class="both">
+
+        <!-- 限时购 -->
+        <view class="time_to_buy">
+
+          <view class="time_to_dis">
+            <image class="time_to_img" src="/images/time_to_buy/time.png"></image>
+          </view>
+
+          <view class="time_to_display">
+            <view class="time_to_both" wx:for="{{time_to_buy}}" wx:key="index">
+              <image class="time_to_both_img" src="{{item.img}}"></image>
+              <view class="selling_price">￥{{item.selling_price/100}}</view>
+              <view class="original_price">￥{{item.original_price/100}}</view>
+            </view>
+          </view>
+
+        </view>
+
+        <!-- 清仓特价 -->
+        <view class="time_to_buy">
+          <image class="time_to_img" src="/images/special_offer/clearance.png"></image>
+          <view style="display:flex;">
+            <view class="lowest">低至9.9元</view>
+            <image class="lowest_img" src="/images/special_offer/clearance-1.png"></image>
+          </view>
+
+        </view>
+
+
+      </view>
+
+      <!-- 缤纷活动 -->
+      <swiper indicator-dots="{{indicatordots}}" circular='{{circular}}' indicator-color="{{faceColor}}" indicator-active-color="{{faceafterColor}}" class="face_activity">
+
+        <block wx:for="{{face_activity}}" wx:key="index">
+
+          <swiper-item data-index="{{index}}">
+
+            <image src='/images/face_activity/activity.png' class='title_img' data-index='{{index}}' lazy-load="true"></image>
+            <image src='{{item.banner_img}}' class='banner_img' data-index='{{index}}' lazy-load="true"></image>
+
+            <view class="article">
+              <view wx:for="{{item.article}}" wx:key="index" wx:for-item="every">
+                <image class="article_img" src="{{every.img}}"></image>
+                <view class="article_name">{{every.name}}</view>
+                <view class="article_price">￥{{every.price/100}}</view>
+              </view>
+            </view>
+
+
+          </swiper-item>
+
+        </block>
+
+      </swiper>
+
+
+
+    </view>
+
+    <!-- 下半部分 -->
+    <view class="next">
+
+      <!-- 精选好货 -->
+      <view class="sift_title">
+        <image class="sift_title_img" src="/images/sift/selected.png"></image>
+      </view>
+
+      <!-- <view class="sift_dis"> -->
+
+        <scroll-view scroll-x="true" class="sift_article" enable-flex="true">
+
+          <view wx:for="{{sift}}" wx:key="index" class="sift_all">
+            <image class="sift_img" src="{{item.img}}"></image>
+            <view class="sift_a">{{item.name}}</view>
+            <view class="sift_price">￥{{item.price/100}}</view>
+          </view>
+
+        </scroll-view>
+
+        <!-- <view class="view_more" wx:if="{{view_more == true}}">
+          <view class="view_more_wz">查看更多</view>
+          <image class="view_more_right" src="/images/sift/more.png"></image>
+        </view> -->
+
+      <!-- </view> -->
+
+      <!-- 好物推荐 -->
+      <view class="recommend_dis">
+        <image class="recommend_title_img" src="/images/recommend/eecommend.png"></image>
+      </view>
+
+
+      <view class="recommend" wx:for="{{recommend}}" wx:key="index">
+        <image class="recommend_img" src="{{item.picPath}}"></image>
+        <view class="recommend_name">{{item.goodName}}</view>
+        <view class="recommend_price">￥{{item.goodprice/100}}</view>
+        <view class="payment">{{item.saleNum}}人付款</view>
+      </view>
+
+      <view style="clear:both"></view>
+
+
+
+    </view>
+
+
+
+
+  </view>
+</view>

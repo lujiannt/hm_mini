@@ -1,0 +1,79 @@
+<!-- 注册 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="headnav" page-name="注册"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+      <!-- 注册表单 -->
+      <form  class="import" wx:if="{{loginwin == false}}">
+
+        <!-- 手机号 -->
+        <view class="phone">
+           <input placeholder="输入手机号码" type="number" placeholder-class="pl_phone_number" class="phone_number" bindinput="phone_number" name="iphone" bindblur="notarize"></input>
+           <image class="icon-iphone" src="/images/phone.png"></image>
+        </view>
+
+        <!-- 验证码 -->
+        <view class="password">
+          <input placeholder="输入验证码" class="enter_password" placeholder-class="pl_enter_password" type="number" value="{{newcode}}" bindinput="code1" name="code" bindblur="notarize"></input>
+          <image class="icon-lnvitation" src="/images/verification.png"></image>
+          <view wx:if="{{dclick == true}}" class="verification" bindtap="getcode">获取验证码</view>
+          <view wx:else class="verification">{{time}}</view>
+        </view>
+
+        <!-- 设置密码 -->
+        <view class="password">
+          <input wx:if="{{isshow1}}" placeholder="设置密码(6-12个字符)" class="enter_password" placeholder-class="pl_enter_password" type="password" value="{{newPassword1}}" bindinput="password1" name="password1" bindblur="notarize"></input>
+          <input wx:else placeholder="设置密码(6-12个字符)" class="enter_password" value="{{newPassword1}}" type="text" placeholder-class="pl_enter_password" bindinput="password2" name="password1" bindblur="notarize"></input>
+
+          <image class="lock" src="/images/password.png"></image>
+          <!-- 点击查看密码 -->
+          <view class="examine" wx:if="{{isshow1}}" bindtap="figure">
+              <image class="eye" src="/images/password-hidden.png"></image>
+          </view>
+
+          <view class="examine" wx:else bindtap="symbol">
+            <image class="eye" src="/images/password-password-.png"></image>
+          </view>
+  
+        </view>
+
+        <!-- 确认密码 -->
+        <view class="password">
+          <input wx:if="{{isshow2}}" placeholder="确认密码" class="enter_password" placeholder-class="pl_enter_password" type="password" value="{{newPassword2}}" bindinput="password3" name="password2" bindblur="notarize"></input>
+          <input wx:else placeholder="确认密码" class="enter_password" value="{{newPassword2}}" type="text" placeholder-class="pl_enter_password" bindinput="password4" name="password2" bindblur="notarize"></input>
+
+          <image class="lock" src="/images/password.png"></image>
+
+          <view class="examine" wx:if="{{isshow2}}" bindtap="figure2">
+              <image class="eye" src="/images/password-hidden.png"></image>
+          </view>
+
+          <view class="examine" wx:else bindtap="symbol2">
+            <image class="eye" src="/images/password-password-.png"></image>
+          </view>
+
+        </view>
+
+        <!-- 填写邀请码 -->
+        <view class="Invitation">
+          <input placeholder="填写邀请码" type="number" placeholder-class="pl_phone_number" class="phone_number" bindinput="invitation" name="invitation" value="{{inv_num}}"></input>
+          <image class="icon-inv" src="/images/lnvitation.png"></image>
+        </view>
+
+        <view class="password_error" wx:if="{{password_error == true}}">两次密码输入不一样,请重新输入</view>
+
+        <button class="regbut {{disabledlog == false?'redbut':''}}" open-type="getUserInfo" disabled="{{disabledlog}}" bindgetuserinfo="gain">注册</button>
+
+      </form>
+
+      <!-- 注册成功 -->
+      <view class="loginwin" wx:if="{{loginwin == true}}">
+        <image class="loginwin-img" src="/images/registersuccess.png"></image>
+        <view class="loginsuc">注册成功!</view>
+        <view class="confirm_jump" bindtap="confirm_jump">确定</view>
+      </view>
+
+  </view>
+
+</view>

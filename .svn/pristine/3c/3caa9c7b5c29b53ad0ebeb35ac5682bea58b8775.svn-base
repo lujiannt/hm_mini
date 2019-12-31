@@ -1,0 +1,594 @@
+// pages/productList/productList.js
+const app = getApp()
+var configuration = require('../../configuration/configuration.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    pagen:1,
+    cutIndex:1,
+    productList:true,
+    price_no:true,
+    allow:true,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options,"ooo")
+    if (options.inputValue){
+      this.setData({
+        inputValue: options.inputValue
+      })
+
+    }
+
+    // 获取搜索商品
+    wx.request({
+      url: configuration.HOST + '/mini/goods/queryGoods',
+      method: "POST",
+      data: {
+        keywords: this.data.inputValue,
+        pageNumber: this.data.pagen,
+        pageSize:10,
+        memberId: wx.getStorageSync('userinfo').id,
+      },
+      success: res => {
+        console.log(res,"rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          for(var i=0;i<res.data.data.rows.length;i++){
+            var goods_price = res.data.data.rows[i].price/100
+            res.data.data.rows[i].goods_price = Math.floor(goods_price * 100) / 100
+          }
+          this.setData({
+            goods:res.data.data.rows,
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+
+  },
+
+  // 点击搜索框跳到搜索页面
+  jump_search: function (e) {
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
+
+  // 点击综合
+  synthesize:function(e){
+    this.setData({
+      cutIndex:1,
+      pagen:1,
+      price_no: true,
+    })
+    wx.request({
+      url: configuration.HOST + '/mini/goods/queryGoods',
+      method: "POST",
+      data: {
+        keywords: this.data.inputValue,
+        pageNumber: this.data.pagen,
+        pageSize: 10,
+        memberId: wx.getStorageSync('userinfo').id,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            goods: res.data.data.rows,
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+  },
+
+  // 点击销量
+  sales_volume:function(e){
+    this.setData({
+      cutIndex: 2,
+      pagen: 1,
+      price_no: true,
+    })
+    wx.request({
+      url: configuration.HOST + '/mini/goods/queryGoods',
+      method: "POST",
+      data: {
+        keywords: this.data.inputValue,
+        pageNumber: this.data.pagen,
+        pageSize: 10,
+        sortName:"g.saleNum",
+        sortOrder: "desc",
+        memberId: wx.getStorageSync('userinfo').id,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            goods: res.data.data.rows,
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+  },
+
+  // 点击价格
+  price_all:function(e){
+    this.setData({
+      cutIndex: 3,
+      pagen: 1,
+      price_no:false,
+      price_up:true,
+    })
+    wx.request({
+      url: configuration.HOST + '/mini/goods/queryGoods',
+      method: "POST",
+      data: {
+        keywords: this.data.inputValue,
+        pageNumber: this.data.pagen,
+        pageSize: 10,
+        sortName: "d.goodPrice",
+        sortOrder: "desc",
+        memberId: wx.getStorageSync('userinfo').id,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            goods: res.data.data.rows,
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+  },
+
+  price_all_up: function (e) {
+    this.setData({
+      cutIndex: 3,
+      pagen: 1,
+      price_no: false,
+      price_up: false,
+    })
+    wx.request({
+      url: configuration.HOST + '/mini/goods/queryGoods',
+      method: "POST",
+      data: {
+        keywords: this.data.inputValue,
+        pageNumber: this.data.pagen,
+        pageSize: 10,
+        sortName: "d.goodPrice",
+        sortOrder: "asc",
+        memberId: wx.getStorageSync('userinfo').id,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            goods: res.data.data.rows,
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+  },
+
+  price_all_down: function (e) {
+    this.setData({
+      cutIndex: 3,
+      pagen: 1,
+      price_no: false,
+      price_up: true,
+    })
+    wx.request({
+      url: configuration.HOST + '/mini/goods/queryGoods',
+      method: "POST",
+      data: {
+        keywords: this.data.inputValue,
+        pageNumber: this.data.pagen,
+        pageSize: 10,
+        sortName: "d.goodPrice",
+        sortOrder: "desc",
+        memberId: wx.getStorageSync('userinfo').id,
+      },
+      success: res => {
+        console.log(res, "rrr")
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+        if (res.data.code == 200) {
+          this.setData({
+            goods: res.data.data.rows,
+          })
+        } else {
+          wx.showToast({
+            title: '系统错误,请稍后',
+            icon: 'none',
+            duration: 1000,
+          });
+        }
+
+      },
+      fail: req => {
+        wx.showToast({
+          title: '系统错误,请稍后',
+          icon: 'none',
+          duration: 1000,
+        });
+      }
+    })
+  },
+
+  // 切换视图
+  cut_view:function(e){
+    if (this.data.productList == true){
+      this.setData({
+        productList:false
+      })
+    }else{
+      this.setData({
+        productList: true
+      })
+    }
+  },
+
+  // 跳转详情页
+  skip_details:function(e){
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/details/details?id=' + e.currentTarget.dataset.id,
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+    var list = this.data.goods
+    if (list.length == 0 || list.length % 10 != 0) {
+      return
+    }
+    
+    // 综合下_上拉加载更多
+    if (this.data.cutIndex == 1 && this.data.allow == true) {
+      this.setData({
+        pagen: this.data.pagen + 1
+      })
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: configuration.HOST + '/mini/goods/queryGoods',
+        method: "POST",
+        data: {
+          keywords: this.data.inputValue,
+          pageNumber: this.data.pagen,
+          pageSize: 10,
+          memberId: wx.getStorageSync('userinfo').id,
+        },
+        success: res => {
+          console.log(res)
+
+          var ds = (this.data.goods == undefined ? [] : this.data.goods)
+          if (res.data.data.length != 0 || res.data.data.length != undefined) {
+            const arr = [];
+            for (var i = 0; i < res.data.data.rows.length; i++) {
+              arr.push(res.data.data.rows[i])
+            }
+            // console.log(arr)
+            // 添加数据到数组中
+            const newArr = ds.concat(arr);
+            this.setData({
+              goods: newArr,
+            })
+            console.log(this.data.goods,"gggggg")
+          } else {
+            this.setData({
+              pagen: this.data.pagen - 1,
+              allow: false
+            })
+          }
+          wx.hideLoading();
+        }
+      })
+    }
+
+    // 销量下_上拉加载更多
+    if (this.data.cutIndex == 2 && this.data.allow == true) {
+      this.setData({
+        pagen: this.data.pagen + 1
+      })
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: configuration.HOST + '/mini/goods/queryGoods',
+        method: "POST",
+        data: {
+          keywords: this.data.inputValue,
+          pageNumber: this.data.pagen,
+          pageSize: 10,
+          sortName: "g.saleNum",
+          sortOrder: "desc",
+          memberId: wx.getStorageSync('userinfo').id,
+        },
+        success: res => {
+          console.log(res)
+
+          var ds = (this.data.goods == undefined ? [] : this.data.goods)
+          if (res.data.data.length != 0 || res.data.data.length != undefined) {
+            const arr = [];
+            for (var i = 0; i < res.data.data.rows.length; i++) {
+              arr.push(res.data.data.rows[i])
+            }
+            // console.log(arr)
+            // 添加数据到数组中
+            const newArr = ds.concat(arr);
+            this.setData({
+              goods: newArr,
+            })
+            console.log(this.data.goods, "gggggg")
+          } else {
+            this.setData({
+              pagen: this.data.pagen - 1,
+              allow: false
+            })
+          }
+          wx.hideLoading();
+        }
+      })
+    }
+
+    // 价格上_上拉加载更多
+    if (this.data.cutIndex == 2 && this.data.allow == true) {
+      this.setData({
+        pagen: this.data.pagen + 1
+      })
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: configuration.HOST + '/mini/goods/queryGoods',
+        method: "POST",
+        data: {
+          keywords: this.data.inputValue,
+          pageNumber: this.data.pagen,
+          pageSize: 10,
+          sortName: "d.goodPrice",
+          sortOrder: "desc",
+          memberId: wx.getStorageSync('userinfo').id,
+        },
+        success: res => {
+          console.log(res)
+
+          var ds = (this.data.goods == undefined ? [] : this.data.goods)
+          if (res.data.data.length != 0 || res.data.data.length != undefined) {
+            const arr = [];
+            for (var i = 0; i < res.data.data.rows.length; i++) {
+              arr.push(res.data.data.rows[i])
+            }
+            // console.log(arr)
+            // 添加数据到数组中
+            const newArr = ds.concat(arr);
+            this.setData({
+              goods: newArr,
+            })
+            console.log(this.data.goods, "gggggg")
+          } else {
+            this.setData({
+              pagen: this.data.pagen - 1,
+              allow: false
+            })
+          }
+          wx.hideLoading();
+        }
+      })
+    }
+
+
+    // 价格下_上拉加载更多
+    if (this.data.cutIndex == 2 && this.data.allow == true) {
+      this.setData({
+        pagen: this.data.pagen + 1
+      })
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.request({
+        url: configuration.HOST + '/mini/goods/queryGoods',
+        method: "POST",
+        data: {
+          keywords: this.data.inputValue,
+          pageNumber: this.data.pagen,
+          pageSize: 10,
+          sortName: "d.goodPrice",
+          sortOrder: "asc",
+          memberId: wx.getStorageSync('userinfo').id,
+        },
+        success: res => {
+          console.log(res)
+
+          var ds = (this.data.goods == undefined ? [] : this.data.goods)
+          if (res.data.data.length != 0 || res.data.data.length != undefined) {
+            const arr = [];
+            for (var i = 0; i < res.data.data.rows.length; i++) {
+              arr.push(res.data.data.rows[i])
+            }
+            // console.log(arr)
+            // 添加数据到数组中
+            const newArr = ds.concat(arr);
+            this.setData({
+              goods: newArr,
+            })
+            console.log(this.data.goods, "gggggg")
+          } else {
+            this.setData({
+              pagen: this.data.pagen - 1,
+              allow: false
+            })
+          }
+          wx.hideLoading();
+        }
+      })
+    }
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

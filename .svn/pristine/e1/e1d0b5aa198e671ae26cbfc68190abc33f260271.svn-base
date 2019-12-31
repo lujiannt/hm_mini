@@ -1,0 +1,83 @@
+<!-- 个人资料 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="个人资料"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <view class="personal_data" bindtap="chang_img">
+      <view class="personal_char">头像</view>
+
+      <view class="personal_right">
+        <image class="personal_img" src="{{imgurl}}"></image>
+        <image class="personal_right_img" src="/images/commodity_details/arrow.png"></image>
+      </view>
+
+    </view>
+
+
+    <view class="personal_data" bindtap="amend_nickname">
+      <view class="personal_char">昵称</view>
+
+      <view class="personal_right">
+        <view class="personal_right_wz">{{name}}</view>
+        <image class="personal_right_img" src="/images/commodity_details/arrow.png"></image>
+      </view>
+
+    </view>
+
+    <view class="personal_data">
+      <view class="personal_char">手机号码</view>
+
+      <view class="personal_right">
+        <view class="personal_right_phone">{{phone}}</view>
+      </view>
+
+    </view>
+
+    <view class="personal_data" bindtap="personal_sex">
+      <view class="personal_char">性别</view>
+
+      <view class="personal_right">
+        <view class="personal_right_wz" wx:if="{{sex == 1}}">女</view>
+        <view class="personal_right_wz" wx:if="{{sex == 2}}">男</view>
+        <image class="personal_right_img" src="/images/commodity_details/arrow.png"></image>
+      </view>
+
+    </view>
+
+    <view class="modals modals-bottom-dialog" hidden="{{sel_sex}}">
+      <view class="modals-cancel" bindtap="hideModal"></view>
+
+      <view class="bottom-dialog-body">
+
+
+        <view class="select_two">
+
+          <view class="sex" bindtap="sex_man">
+            <image class="sex_img" src="/images/shopping/choice.png" wx:if="{{sex == 2}}"></image>
+            <image class="sex_img" src="/images/shopping/k_choice.png" wx:else></image>
+
+            <span class="sex_char">男</span>
+          </view>
+
+          <view class="sex" bindtap="sex_woman">
+            <image class="sex_img" src="/images/shopping/choice.png" wx:if="{{sex == 1}}"></image>
+            <image class="sex_img" src="/images/shopping/k_choice.png" wx:else></image>
+            <span class="sex_char">女</span>
+          </view>
+
+        </view>
+
+        <view class="select_btn">
+          <view class="pushout" bindtap="hideModal">退出</view>
+          <view class="confirm" bindtap="amend_confirm">确定</view>
+        </view>
+
+
+      </view>
+    </view>
+
+
+  </view>
+</view>

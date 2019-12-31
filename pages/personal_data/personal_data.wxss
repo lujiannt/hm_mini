@@ -1,0 +1,145 @@
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 130rpx;
+}
+
+.personal_data{
+  width: 700rpx;
+  margin: 0 auto;
+  padding: 80rpx 0 30rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #b3b3b3;
+}
+.personal_char{
+  font-size: 28rpx;
+  color: #333333;
+  margin: 0 0 0 25rpx;
+}
+.personal_right{
+  margin-right: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.personal_img{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin: 0 30rpx 0 0;
+}
+.personal_right_img{
+  width: 13rpx;
+  height: 22rpx;
+}
+.personal_right_wz{
+  font-size: 28rpx;
+  color: #333333;
+  margin: 0 30rpx 0 0;
+}
+.personal_right_phone{
+  font-size: 28rpx;
+  color: #b3b3b3;
+  margin-right: 30rpx;
+}
+
+
+/* 性别选择 */
+
+.modals {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modals-cancel {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom-dialog-body {
+  position: absolute;
+  z-index: 10001;
+  top:40%;
+  left: 13%;
+  overflow: scroll;
+    width: 560rpx;
+  height: 350rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+}
+
+
+
+
+
+.popups{
+  width: 560rpx;
+  height: 350rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  position: fixed;
+  top:40%;
+  left: 13%;
+  z-index: 10001;
+}
+.select_two{
+  margin: 92rpx 100rpx 80rpx 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sex{
+  display: flex;
+  align-items: center;
+}
+.sex_img{
+  width: 32rpx;
+  height: 32rpx;
+  margin: 10rpx 20rpx 0 0;
+}
+
+.select_btn{
+  margin: 0 42rpx 0 42rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pushout{
+  width: 210rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #ffffff;
+  border-radius: 35rpx;
+  background-color: #cccccc;
+}
+.confirm{
+  width: 210rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #ffffff;
+  border-radius: 35rpx;
+  background-color: #de4040;
+}

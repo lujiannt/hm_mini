@@ -1,0 +1,40 @@
+<!-- 地址管理 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" wx:if="{{manage == true}}" page-name="地址管理"></navbar>
+  <navbar class="normalnav" wx:else page-name="添加地址"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <image class="add_address_img" src="/images/address.png" wx:if="{{manage == true && address.length == 0}}"></image>
+    <view wx:if="{{manage == true && address.length == 0}}" class="add_char">目前还没有收货地址</view>
+
+    <!-- 添加地址按钮 -->
+    <view class="add_address" wx:if="{{manage == true}}" bindtap="add_address">添加地址</view>
+
+    <!-- 添加地址 -->
+    <view class="con_all" wx:if="{{manage == false}}">
+
+      <view class="consignee">
+        <view class="title">收货人:</view>
+        <input class="inp_val" type="text" placeholder="请填写收货人姓名" placeholder-class="inp_val_pla" bindinput="con_name"></input>
+      </view>
+
+      <view class="consignee">
+        <view class="title">手机号:</view>
+        <input class="inp_val" type="number" placeholder="请填写收货人手机号" placeholder-class="inp_val_pla" bindinput="con_phone"></input>
+      </view>
+
+      <view class="consignee">
+        <view class="title2">所在地区:</view>
+        <image class="con_img" src="/images/add_address.png"></image>
+        
+      </view>
+
+
+
+    </view>
+
+  </view>
+
+</view>

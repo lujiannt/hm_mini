@@ -1,0 +1,8 @@
+<!--component/normalnavbar/normalnavbar.wxml-->
+<view wx:if="{{scrollTop < 400}}" class="navbar"  style="background-image:url(https://jshm.oss-cn-shanghai.aliyuncs.com/other/5053360ba2efdb2966bcd79c89a444b.png);background-size: 100% 100%;background-repeat: no-repeat;height:{{navH}}px">
+    <view class='navbar-title'>{{pageName}}</view>
+</view>
+
+<view wx:else class="navbar" style="background-color: #ffffff;">
+  <view class='navbar-title2'>{{pageName}}</view>
+</view>

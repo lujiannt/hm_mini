@@ -1,0 +1,247 @@
+/* pages/add_address/add_address.wxss */
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+    background-color: #f7f7f7;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 130rpx;
+  padding-top: 20rpx;
+
+  /* height: 100%; */
+}
+
+/* 地址列表 */
+.address_list{
+  width: 700rpx;
+  height: 260rpx;
+  margin: 0 auto 20rpx auto;
+  border-radius: 10rpx;
+  background-color: #fff;
+  padding: 50rpx 0 0 0;
+}
+
+.address_list_name{
+  font-size: 32rpx;
+  color: #333333;
+  margin: 0 46rpx 30rpx 50rpx;
+}
+
+.address_list_phone{
+  font-size: 26rpx;
+  color: #333333;
+  margin: 0 0 30rpx 46rpx;
+}
+
+.address_title{
+  width: 66rpx;
+  height: 32rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: #808080;
+  text-align: center;
+  margin-right: 10rpx;
+  /* float: left; */
+  border-radius: 10rpx;
+  margin-left: 50rpx;
+  display: inline-block;
+}
+.address_dz{
+  font-size: 26rpx;
+  color: #808080;
+  /* float: left; */
+  display: inline;
+}
+
+.add_dis{
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  width: 645rpx;
+  margin: 0 auto;
+}
+.add_left_img{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+
+}
+.add_right{
+  width: 100rpx;
+  text-align: right;
+}
+.add_right_img{
+  width: 27rpx;
+  height: 28rpx;
+}
+
+.add_left_char{
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.strp{
+  width: 645rpx;
+  height: 1px;
+  background-color: #cccccc;
+  margin: 38rpx auto 20rpx auto;
+}
+
+.add_address_img {
+  width: 320rpx;
+  height: 300rpx;
+  display: block;
+  margin: 330rpx auto 40rpx auto;
+}
+
+.add_char {
+  margin: 0 0 120rpx 0;
+  text-align: center;
+  font-size: 32rpx;
+  color: #808080;
+}
+
+/* 添加地址按钮 */
+
+.add_address {
+  width: 560rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 35rpx;
+  background-color: #de4040;
+  font-size: 28rpx;
+  color: #fff;
+  text-align: center;
+  margin: 200rpx auto 0 auto;
+}
+
+/* 添加地址 */
+
+.con_all {
+  margin-top: 170rpx;
+}
+
+.consignee {
+  width: 700rpx;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  padding-bottom: 30rpx;
+  margin: 0 auto 50rpx auto;
+}
+
+.title {
+  font-size: 28rpx;
+  color: #333;
+  margin: 0 60rpx 0 50rpx;
+}
+
+.inp_val {
+  font-size: 28rpx;
+  color: #333;
+  width: 450rpx;
+}
+
+.inp_val_pla {
+  font-size: 28rpx;
+  color: #b3b3b3;
+}
+
+.title2 {
+  font-size: 28rpx;
+  color: #333;
+  margin: 0 30rpx 0 50rpx;
+}
+
+.con_img {
+  width: 20rpx;
+  height: 26rpx;
+  margin: 0 10rpx 0 0;
+}
+
+.region {
+  font-size: 28rpx;
+  color: #b3b3b3;
+  width: 400rpx;
+}
+
+.selected {
+  font-size: 28rpx;
+  color: #333;
+  width: 400rpx;
+}
+
+.details_address {
+  width: 700rpx;
+  border-bottom: 1px solid #ccc;
+  margin: 0 auto 50rpx auto;
+}
+
+.details_address_char {
+  font-size: 28rpx;
+  color: #b3b3b3;
+  text-align: left;
+  margin-left: 50rpx;
+}
+
+.details_address_inp {
+  margin: 10rpx 0 30rpx 50rpx;
+}
+
+.label {
+  margin: 30rpx 0 200rpx 50rpx;
+  display: flex;
+  align-items: center;
+}
+
+.label_char {
+  font-size: 28rpx;
+  color: #333;
+  margin-right: 30rpx;
+}
+
+.label_home {
+  width: 140rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  border: 1px solid #ccc;
+  font-size: 26rpx;
+  color: #808080;
+  text-align: center;
+  line-height: 56rpx;
+  margin-right: 30rpx;
+}
+
+.home {
+  background-color: #333;
+  color: white;
+}
+
+.firm {
+  background-color: #333;
+  color: white;
+}
+
+.scol{
+    background-color: #333;
+  color: white;
+}
+.save_address{
+  width: 560rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 35rpx;
+  background-color: #de4040;
+  font-size: 28rpx;
+  color: #fff;
+}
