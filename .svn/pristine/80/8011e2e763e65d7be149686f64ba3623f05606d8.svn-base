@@ -1,0 +1,93 @@
+/*模态框*/
+
+.modals {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modals-cancel {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom-dialog-body {
+  position: absolute;
+  z-index: 10001;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* max-height:1054rpx;
+  min-height: 500rpx; */
+  height: 820rpx;
+  background-color: #fff;
+  /* overflow: scroll; */
+}
+
+.cancel_order {
+  font-size: 32rpx;
+  color: #333;
+  text-align: left;
+  margin: 60rpx 0 20rpx 32rpx;
+}
+
+.cancel_order_char {
+  font-size: 26rpx;
+  color: #b3b3b3;
+  margin: 0 0 60rpx 32rpx;
+}
+
+.cause_all {
+  display: flex;
+  align-items: center;
+  margin: 0 0 40rpx 32rpx;
+}
+
+.cause_img {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 0 20rpx 0 0;
+}
+
+.cause_char {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.buttons {
+  width: 500rpx;
+  margin: 60rpx auto 60rpx auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons_left {
+  width: 210rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+  background-color: #ccc;
+  border-radius: 35rpx;
+}
+
+.buttons_right {
+  width: 210rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #fff;
+  background-color: #de4040;
+  border-radius: 35rpx;
+}

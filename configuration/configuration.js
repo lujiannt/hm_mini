@@ -4,7 +4,7 @@ var test2 = 'http://192.168.0.105:8080'
 var test3 = 'http://localhost:8080'
 
 //host
-const HOST = test3; 
+const HOST = test; 
 
 module.exports = {
   HOST

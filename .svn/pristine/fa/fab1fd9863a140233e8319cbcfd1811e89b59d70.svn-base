@@ -1,0 +1,27 @@
+<!--component/cancel_order/cancel_order.wxml-->
+<view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+  <view class="modals-cancel" bindtap="hideModal"></view>
+
+  <view class="bottom-dialog-body">
+
+    <view class="cancel_order">取消订单</view>
+    <view class="cancel_order_char">请选择您取消订单的原因，我们会进一步改进！</view>
+
+    <view class="cause_all" wx:for="{{cause}}" wx:key="index" bindtap="select_cause" data-title="{{item.title}}">
+      <image class="cause_img" wx:if="{{item.cause == false}}" src="/images/shopping/k_choice.png"></image>
+      <image class="cause_img" wx:else src="/images/shopping/choice.png"></image>
+
+      <view class="cause_char">{{item.title}}</view>
+
+    </view>
+
+    <view class="buttons">
+      <view class="buttons_left" bindtap="cancel">取消</view>
+      <view class="buttons_right" bindtap="confirm">确定</view>
+    </view>
+
+
+
+  </view>
+
+</view>

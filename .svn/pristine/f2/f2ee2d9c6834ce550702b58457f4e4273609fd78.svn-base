@@ -32,7 +32,7 @@
     </view>
 
     <!-- 分享按钮 -->
-    <button class="share_friend" bindtap="onShareAppMessage"  open-type="share">分享至微信好友
+    <button class="share_friend">分享至微信好友
       <image class="share_img" src="/images/invite_friends/weixin.png"></image>
     </button>
 

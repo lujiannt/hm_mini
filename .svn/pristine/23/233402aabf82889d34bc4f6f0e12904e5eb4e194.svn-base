@@ -32,7 +32,7 @@
     </view>
 
     <!-- 分享按钮 -->
-    <button class="share_friend" bindtap="onShareAppMessage"  open-type="share">分享至微信好友
+    <button class="share_friend">分享至微信好友
       <image class="share_img" src="/images/invite_friends/weixin.png"></image>
     </button>
 
@@ -48,7 +48,7 @@
     <view class="rule_invite">3.邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;</view>
     <view class="rule_invite">4.邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;</view>
 
-    <!-- 二维码弹出层 -->
+
     <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
       <view class="modals-cancel" bindtap="hideModal"></view>
 

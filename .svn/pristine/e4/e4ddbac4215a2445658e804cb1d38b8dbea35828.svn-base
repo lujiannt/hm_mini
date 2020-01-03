@@ -120,7 +120,7 @@ Page({
                     this.data.cartIds = res.data.data.orderCartlist[0].ordercartid
                   }else{
                     for(var h=0;h<res.data.data.orderCartlist.length;h++){
-                      cart_arr.push(res.data.data.orderCartlist[h].ordercartid)
+                      cart_arr.push(res.data.data.orderCartlist[i].ordercartid)
                       cart_arr.join(",")
                     }
                     this.data.cartIds = cart_arr

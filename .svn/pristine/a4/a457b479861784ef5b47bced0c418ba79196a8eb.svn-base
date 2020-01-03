@@ -21,10 +21,6 @@ Page({
    */
   onLoad: function(options) {
 
-    this.setData({
-      check_all: "/images/shopping/k_choice.png",
-    })
-
     // 获取购物车商品
     wx.request({
       url: configuration.HOST + '/mini/order/shopcartList',
@@ -251,17 +247,10 @@ Page({
           check_all: '/images/shopping/choice.png'
         })
 
-        
-
         for (var i = 0; i < this.data.rows.length; i++) {
           this.data.rows[i].select = true
-          if (this.data.goodsid.indexOf(this.data.rows[i].id) == -1) {
-            this.data.goodsid.push(this.data.rows[i].id)
-          }
-          if (this.data.goodsid.indexOf(this.data.rows[i].quality) == -1) {
-            this.data.goods_qua.push(this.data.rows[i].quality)
-          }
-          
+          this.data.goodsid.push(this.data.rows[i].id)
+          this.data.goods_qua.push(this.data.rows[i].quality)
         }
 
         this.setData({

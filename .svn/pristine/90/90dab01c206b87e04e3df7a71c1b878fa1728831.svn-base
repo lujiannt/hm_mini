@@ -170,8 +170,8 @@
 .bottom-dialog-body {
   position: absolute;
   z-index: 10001;
-  top:30%;
-  left: 3.5%;
+  top:40%;
+  left: 13%;
   overflow: scroll;
   width: 700rpx;
   height: 800rpx;

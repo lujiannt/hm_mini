@@ -24,7 +24,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    if (wx.getStorageSync('userinfo') != '' && wx.getStorageSync('userinfo') != undefined && wx.getStorageSync('userinfo') != null) {
+      if (wx.getStorageSync('userinfo').miniopenid != null) {
+        wx.redirectTo({
+          url: '/pages/index/index',
+        })
+      }
+    }
   },
 
   //验证 
@@ -262,7 +268,7 @@ Page({
           success: res => {
             console.log(res, "rrr123213213")
             wx.setStorageSync("openid", res.data.openid)
-            console.log(wx.getStorageSync('openid'),"openid")
+            console.log(wx.getStorageSync('openid'), "openid")
             wx.request({
               url: configuration.HOST + '/mini/member/register',
               method: "POST",
@@ -305,7 +311,7 @@ Page({
                     icon: 'none',
                     duration: 1500,
                   });
-                }else {
+                } else {
                   wx.showToast({
                     title: res.data.msg,
                     icon: 'none',

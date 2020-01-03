@@ -7,13 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hideModal: true,
+    hideModal:true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
     // 好友人数
     wx.request({
@@ -38,7 +38,7 @@ Page({
 
         if (res.data.code == 200) {
           this.setData({
-            p_num: res.data.data,
+            p_num:res.data.data,
           })
         } else {
           wx.showToast({
@@ -105,13 +105,13 @@ Page({
 
   },
 
-  wx_code: function(e) {
+  wx_code:function(e){
     this.setData({
-      hideModal: false,
+      hideModal:false,
     })
   },
 
-  hideModal: function(e) {
+  hideModal:function(e){
     this.setData({
       hideModal: true,
     })
@@ -120,15 +120,15 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-    // console.log(wx.getStorageSync('userinfo'))
+  onShow: function () {
+    console.log(wx.getStorageSync('userinfo'))
     if (wx.getStorageSync('userinfo') != '' || wx.getStorageSync('userinfo') != undefined || wx.getStorageSync('userinfo') != null) {
       this.setData({
         headimg: wx.getStorageSync('userinfo').headimg,
@@ -141,61 +141,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 分享给好友
-   */
-  onShareAppMessage: function(res) {
-    console.log(res.from);
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log('res.target: ' +res.target)
-    }
-    return {
-      title: '快来.....啦',
-      //图片地址
-      // imageUrl: 'https://jshm.oss-cn-shanghai.aliyuncs.com/images/2.jpg',
-      // 用户点击首先进入的当前页面
-      path: '/pages/login/login?sid=123',
-      success: function(res) {
-        // 转发成功
-        console.log("转发成功:");
-      },
-      fail: function(res) {
-        // 转发失败
-        console.log("转发失败:");
-      }
-    }
   }
 })

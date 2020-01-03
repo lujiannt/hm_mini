@@ -90,7 +90,7 @@
       <view class="sub_right">
         <view class="total">合计: </view>
         <view class="sub_pri">￥{{pay_price}}</view>
-        <button open-type="getUserInfo" class="but_submit_order" bindgetuserinfo="submit_order">提交订单</button>
+        <view class="but_submit_order" bindtap="submit_order">提交订单</view>
       </view>
     </view>
 
