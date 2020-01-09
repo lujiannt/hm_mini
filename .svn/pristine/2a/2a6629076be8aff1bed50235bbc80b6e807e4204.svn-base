@@ -1,0 +1,41 @@
+<!-- 评价 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="评价"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <block wx:for="{{orderlist}}" wx:key="index">
+
+      <!-- 评论商品 -->
+      <view class="header_dis">
+        <image class="dis_img" src="{{item.picPath}}"></image>
+        <view class="dis_name">{{item.goodName}}</view>
+      </view>
+
+    </block>
+
+    <view class="eva_start">
+      <view class="eva_char">评价</view>
+
+      <block wx:for="{{stars}}" wx:key="index">
+        <image class="start" wx:if="{{item.select == true}}" src="/images/selected.png" bindtap="subtract" data-id="{{item.id}}" data-key="{{index}}"></image>
+        <image class="start" wx:else src="/images/normal.png" bindtap="add" data-id="{{item.id}}" data-key="{{index}}"></image>
+      </block>
+
+      <view class="praise" wx:if="{{praise>3}}">好评</view>
+      <view class="praise" wx:if="{{praise == 3}}">中评</view>
+      <view class="praise" wx:if="{{praise < 3}}">差评</view>
+
+    </view>
+
+    <!-- 标签 -->
+    <view class="label_all">
+      <view class="label {{item.select == true?'select':''}}" wx:for="{{label}}" wx:key="index" data-id="{{item.id}}" bindtap="label_select">{{item.tagName}}</view>
+      <view style="clear:both"></view>
+    </view>
+
+
+  </view>
+
+</view>

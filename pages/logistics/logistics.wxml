@@ -1,0 +1,91 @@
+<!-- 物流信息 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="物流信息"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 订单编号 -->
+    <view class="serial">订单编号：{{serial}}</view>
+
+    <!-- 订单商品 -->
+    <view class="goods">
+      <image class="logistics_img" src="{{orderlist[0].picPath}}"></image>
+      <view class="log_dis">
+        <view class="dis_name">{{orderlist[0].goodName}}</view>
+        <view class="dis_num">共{{orderlist.length}}件商品</view>
+      </view>
+    </view>
+
+    <!-- 物流信息 -->
+    <view class="message">
+      <view class="message_char">物流信息</view>
+      <view class="company">物流公司：{{logistics.shipcompany}}</view>
+      <view class="shipnum">物流单号：{{logistics.shipnum}}</view>
+    </view>
+
+    <!-- 物流跟踪 -->
+
+    <view class="tail_after" style="overflow:{{overflow}};height:{{overflow == 'hidden'?'450rpx':''}};">
+      <view class="tail_char">物流跟踪</view>
+
+      <view class="outer">
+        <view class="status">{{log1.status}}</view>
+        <view class="time">{{log1.time}}</view>
+        <image class="outer_img" src="/images/shopping/choice.png"></image>
+      </view>
+
+      <view class="outer">
+        <view class="status">{{log2.status}}</view>
+        <view class="time">{{log2.time}}</view>
+        <image class="outer_img" src="/images/logistics/courier-gray.png"></image>
+      </view>
+
+      <view class="outer" wx:for="{{logistics.itemlist}}" wx:key="index">
+        <view class="status">{{item.status}}</view>
+        <view class="time">{{item.time}}</view>
+        <image class="outer_img" src="/images/logistics/log.png"></image>
+      </view>
+
+      <view class="outer">
+        <view class="status">{{bot3.status}}</view>
+        <view class="time">{{bot3.time}}</view>
+        <image class="outer_img" src="/images/logistics/receiving-gray.png"></image>
+      </view>
+
+      <view class="outer">
+        <view class="status">{{bot2.status}}</view>
+        <view class="time">{{bot2.time}}</view>
+        <image class="outer_img" src="/images/logistics/delivery-gray.png"></image>
+      </view>
+
+      <view class="outer2">
+        <view class="status">{{bot1.status}}</view>
+        <view class="time">{{bot1.time}}</view>
+        <image class="outer_img" src="/images/logistics/order-gray.png"></image>
+      </view>
+
+    </view>
+
+    <!-- 切换 -->
+    <view class="cut" bindtap="check" wx:if="{{overflow == 'hidden'}}">
+      查看更多物流
+      <image class="cut_img" src="/images/logistics/down.png"></image>
+    </view>
+
+    <!-- 猜你喜欢 -->
+    <image class="guess" src="/images/shopping/like.png"></image>
+    
+    <view class="recommend" wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}" bindtap="hot_Sale">
+      <image class="recommend_img" src="{{item.picPath}}"></image>
+      <view class="recommend_name">{{item.goodName}}</view>
+      <view class="recommend_price">￥{{item.goodprice/100}}</view>
+      <view class="payment">{{item.saleNum}}人付款</view>
+    </view>
+
+    <view style="clear:both"></view>
+
+
+  </view>
+
+</view>

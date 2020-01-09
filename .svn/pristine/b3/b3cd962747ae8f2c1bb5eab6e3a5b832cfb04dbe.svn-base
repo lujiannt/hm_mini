@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/register/register",
+    "pages/logs/logs",
+    "pages/login/login",
+    "pages/TextLogin/TextLogin",
+    "pages/classify/classify",
+    "pages/shopping/shopping",
+    "pages/my/my",
+    "pages/search/search",
+    "pages/productList/productList",
+    "pages/details/details",
+    "pages/personal_data/personal_data",
+    "pages/purchase/purchase",
+    "pages/nickname/nickname",
+    "pages/add_address/add_address",
+    "pages/invite_friends/invite_friends",
+    "pages/my_order/my_order",
+    "pages/logistics/logistics",
+    "pages/order_details/order_details",
+    "pages/evaluate/evaluate"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "微信小程序",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "selectedColor": "#de4040",
+    "color": "#333333",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/home-2.png",
+        "selectedIconPath": "/images/home-1.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "/images/classify-2.png",
+        "selectedIconPath": "/images/classify-1.png"
+      },
+      {
+        "pagePath": "pages/shopping/shopping",
+        "text": "购物车",
+        "iconPath": "/images/shopping-2.png",
+        "selectedIconPath": "/images/shopping-1.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/images/user-2.png",
+        "selectedIconPath": "/images/user-1.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

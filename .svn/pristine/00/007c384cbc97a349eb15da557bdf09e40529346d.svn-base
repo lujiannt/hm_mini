@@ -1,0 +1,88 @@
+<!-- 我的订单 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="我的订单"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 选项 -->
+    <view class="header_option_all">
+      <view class="header_option {{pitch_on == 0?'pitch_on':''}}" bindtap="select" data-id="0">全部</view>
+      <view class="header_option {{pitch_on == 1?'pitch_on':''}}" bindtap="select" data-id="1">待支付</view>
+      <view class="header_option {{pitch_on == 2?'pitch_on':''}}" bindtap="select" data-id="2">待发货</view>
+      <view class="header_option {{pitch_on == 3?'pitch_on':''}}" bindtap="select" data-id="3">待收货</view>
+      <view class="header_option {{pitch_on == 4?'pitch_on':''}}" bindtap="select" data-id="4">待评价</view>
+    </view>
+
+    <view class="all_orders_all">
+
+      <!-- 订单 -->
+      <view wx:for="{{all_orders}}" wx:key="index" class="all_orders">
+
+        <view class="all_orders_header">
+          <view class="header_left">{{item.createtime}}</view>
+          <view class="header_state" wx:if="{{item.STATUS == -3}}">订单关闭</view>
+          <view class="header_state" wx:if="{{item.STATUS == 0}}">待付款</view>
+          <view class="header_state" wx:if="{{item.STATUS == 4}}">待发货</view>
+          <view class="header_state" wx:if="{{item.STATUS == 5}}">已完成</view>
+          <!-- <view class="header_state" wx:if="{{item.STATUS == 7}}">退款中</view> -->
+          <view class="header_state" wx:if="{{item.STATUS == 10}}">待收货</view>
+          <view class="header_state" wx:if="{{item.STATUS == 12}}">交易完成</view>
+          <view class="header_state" wx:if="{{item.STATUS == 14}}">申请退换货</view>
+          <view class="header_state" wx:if="{{item.STATUS == 17}}">已评价</view>
+          <!-- <view class="header_state" wx:if="{{item.STATUS == -1}}">交易关闭</view> -->
+        </view>
+
+        <!-- 订单商品 -->
+        <view class="orders_goods" wx:for="{{item.orderDetailList}}" wx:key="index" wx:for-item="goods" bindtap="order_details" data-payTogether="{{item.payTogether}}" data-status="{{item.STATUS}}">
+          <image class="goods_img" src="{{goods.picPath}}"></image>
+          <view class="goods_right">
+
+            <view class="goods_header_right">
+
+              <view class="goods_name">{{goods.goodName}}</view>
+              <view class="goods_right_right">
+                <view class="goods_price">￥{{goods.price/100}}</view>
+                <view class="goods_num">×{{goods.quality}}</view>
+              </view>
+
+            </view>
+
+            <view class="title">{{goods.title}}</view>
+
+
+          </view>
+        </view>
+        <view style="clear:both;"></view>
+
+        <!-- 商品金额 -->
+        <view class="common">共{{item.orderDetailList.length}}件商品
+          <span class="sum">合计：
+            <span class="goods_price">￥{{item.restNum}}</span>
+          </span>
+        </view>
+
+        <!-- 订单按钮 -->
+        <view class="buttons">
+
+          <view class="cancel" wx:if="{{item.STATUS == 0 || item.STATUS == 4}}" bindtap="cancellation" data-payTogether="{{item.payTogether}}">取消订单</view>
+          <view class="cancel" wx:if="{{item.STATUS == 5 || item.STATUS == -3 || item.STATUS == 12}}" bindtap="remove" data-payTogether="{{item.payTogether}}">删除订单</view>
+          <!-- <view class="cancel" wx:if="{{item.STATUS == 7}}">平台介入</view> -->
+          <view class="cancel" wx:if="{{item.STATUS == 4 || item.STATUS == 10}}" bindtap="examine" data-payTogether="{{item.payTogether}}">查看物流</view>
+
+          <view class="payment" wx:if="{{item.STATUS == 0 }}">支付</view>
+          <view class="payment" wx:if="{{item.STATUS == 4}}">提醒发货</view>
+          <view class="payment" wx:if="{{item.STATUS == 10}}" bindtap="affirm" data-payTogether="{{item.payTogether}}">确认收货</view>
+          <view class="payment" wx:if="{{item.STATUS == 5 || item.STATUS == 12}}" bindtap="evaluate" data-orderlist="{{item.orderDetailList}}">评价</view>
+          <!-- <view class="payment" wx:if="{{item.STATUS == 7}}">撤销申请</view> -->
+        </view>
+
+      </view>
+
+      <pop-up id="pop-up" hideModal="{{hideModal}}" paytogether="{{paytogether}}" bind:load="load"></pop-up>
+
+    </view>
+
+  </view>
+
+</view>

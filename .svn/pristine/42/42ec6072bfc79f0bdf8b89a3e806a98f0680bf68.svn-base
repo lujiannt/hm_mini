@@ -1,0 +1,64 @@
+<!-- 邀请好友 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="邀请好友" invite="true"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <image class="title_img" src="/images/invite_friends/img_bt.png"></image>
+
+    <!-- 邀请人 -->
+    <view class="inviter_auto">
+
+      <image class="inviter_user_img" data-a="{{headimg}}" src="{{headimg}}"></image>
+      <image class="wx_code" src="/images/invite_friends/erweima.png" bindtap="wx_code"></image>
+
+      <view class="inv_code">邀请码: {{inv_code}}</view>
+
+      <view class="inviter_dis">
+
+        <view class="inviter_left">
+          <view class="p_num">{{p_num}}人</view>
+          <view class="p_num_char">好友人数</view>
+        </view>
+
+        <view class="inviter_right">
+          <view class="p_num">￥{{profit}}</view>
+          <view class="p_num_char">已获利润</view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <!-- 分享按钮 -->
+    <button class="share_friend" open-type="share">分享至微信好友
+      <image class="share_img" src="/images/invite_friends/weixin.png"></image>
+    </button>
+
+    <button class="share_circle" bindtap="createNewImg">分享至朋友圈
+      <image class="friend_img" src="/images/invite_friends/friend.png"></image>
+    </button>
+
+    <!-- 规则 -->
+    <view class="rule">规则</view>
+
+    <view class="rule_invite">1.邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;</view>
+    <view class="rule_invite">2.邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;</view>
+    <view class="rule_invite">3.邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;</view>
+    <view class="rule_invite">4.邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;邀请好友;</view>
+
+    <canvas class="canvas" style="width:375px;height:375px;display:{{dis}}" canvas-id="mycanvas"></canvas>
+
+    <!-- 二维码弹出层 -->
+    <view class="modals modals-bottom-dialog" hidden="{{hideModal}}">
+      <view class="modals-cancel" bindtap="hideModal"></view>
+
+      <view class="bottom-dialog-body">
+
+      </view>
+    </view>
+
+  </view>
+
+</view>

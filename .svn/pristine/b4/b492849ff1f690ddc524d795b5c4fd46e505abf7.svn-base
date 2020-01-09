@@ -1,0 +1,62 @@
+<!-- 收藏 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="收藏"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <view class="management">
+      <view class="man_left">您已收藏{{collect.total}}件商品</view>
+      <view class="man_right" wx:if="{{management == true}}" bindtap="manage">管理</view>
+      <view class="man_right" wx:else bindtap="manage">完成</view>
+    </view>
+
+    <!-- 收藏商品 -->
+    <view class="collection" wx:for="{{rows}}" wx:key="index" bindtap="collection" data-id="{{item.id}}">
+      <image class="select" wx:if="{{item.select == false && management == false}}" src="/images/shopping/k_choice.png"></image>
+      <image class="select" wx:if="{{item.select == true && management == false}}" src="/images/shopping/choice.png"></image>
+
+      <image class="col_img {{management == true?'col_img2':''}}" src="{{item.picPath}}"></image>
+
+      <view class="col_right">
+        <view class="goods_name">{{item.goodName}}</view>
+        <view class="col_right_dis">
+          <view class="goods_price">￥{{item.price}}</view>
+          <view class="but2" wx:if="{{item.status != 1}}">商品已下架</view>
+        </view>
+      </view>
+
+      <view style="clear:both"></view>
+
+    </view>
+
+    <!-- 猜你喜欢 -->
+    <image class="Hot_Sale" src="/images/shopping/like.png"></image>
+
+    <view class="recommend" wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}" bindtap="hot_Sale">
+      <image class="recommend_img" src="{{item.picPath}}"></image>
+      <view class="recommend_name">{{item.goodName}}</view>
+      <view class="recommend_price">￥{{item.goodprice/100}}</view>
+      <view class="payment">{{item.saleNum}}人付款</view>
+    </view>
+
+    <view style="clear:both"></view>
+
+    <!-- 底部功能条 -->
+    <view class="but" wx:if="{{management == false}}">
+
+      <view class="but_left" bindtap="click_all">
+        <image class="check_all" wx:if="{{check_all == false}}" src="/images/shopping/k_choice.png"></image>
+        <image class="check_all" wx:else src="/images/shopping/choice.png"></image>
+        <view class="char">全选</view>
+      </view>
+
+
+      <view class="shift_out" bindtap="shift_out">移出收藏</view>
+
+
+    </view>
+
+  </view>
+
+</view>

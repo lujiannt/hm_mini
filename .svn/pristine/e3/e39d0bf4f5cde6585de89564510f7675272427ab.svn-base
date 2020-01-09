@@ -1,0 +1,10 @@
+<!-- 我的评价 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="我的评价"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+  </view>
+
+</view>

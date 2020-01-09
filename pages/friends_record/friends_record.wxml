@@ -1,0 +1,22 @@
+<!-- 好友记录 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar page-name="好友记录"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <view wx:for="{{report}}" wx:key="index" class="report_all">
+      <view class="time">{{item.time}}</view>
+
+      <view class="report_price" wx:if="{{item.flowType == 1}}">返利金额：
+        <span class="report_price_de">￥{{item.flowProfitYuan}}</span>
+      </view>
+      <view class="report_price" wx:if="{{item.flowType == 2}}">提现金额：
+        <span class="report_price_de">￥{{item.flowProfitYuan}}</span>
+      </view>
+
+    </view>
+
+  </view>
+
+</view>

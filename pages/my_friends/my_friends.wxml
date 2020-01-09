@@ -1,0 +1,25 @@
+<!-- 我的好友 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar page-name="我的好友"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <view class="friends_arr" wx:for="{{rows}}" wx:key="index" bindtap="firends" data-item="{{item}}">
+
+      <view class="left">
+        <image class="firends_img" src="{{item.headImg}}"></image>
+        <view class="phone">{{item.phone}}</view>
+      </view>
+
+      <view class="right">
+        <view class="time">{{item.time}}</view>
+        <image class="you" src="/images/my/arrow.png"></image>
+      </view>
+
+
+    </view>
+
+  </view>
+
+</view>

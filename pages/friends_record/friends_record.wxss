@@ -1,0 +1,41 @@
+/* pages/friends_record/friends_record.wxss */
+page{
+  background-color: #f7f7f7;
+}
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 120rpx;
+}
+
+.report_all{
+  width: 700rpx;
+  height: 150rpx;
+  margin: 0 auto 20rpx auto;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.time{
+  font-size: 24rpx;
+  color: #808080;
+  margin-left: 30rpx;
+}
+.report_price{
+  font-size: 26rpx;
+  color: #333333;
+}
+.report_price_de{
+  font-size: 32rpx;
+  color: #de4040;
+}

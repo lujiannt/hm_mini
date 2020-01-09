@@ -1,0 +1,23 @@
+<!-- 物流信息 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="物流信息"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 订单编号 -->
+    <view class="serial">订单编号：{{serial}}</view>
+    
+    <!-- 订单商品 -->
+    <view class="goods" wx:for="{{logistics.orderDetailList}}" wx:key="index">
+      <image class="logistics_img" src="{{item.picPath}}"></image>
+      <view class="log_dis">
+        <view class="dis_name">{{item.goodName}}</view>
+        <view class="dis_num">共{{logistics.orderDetailList.length}}件商品</view>
+      </view>
+    </view>
+
+
+  </view>
+
+</view>

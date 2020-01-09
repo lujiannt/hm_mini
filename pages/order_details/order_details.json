@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navbar": "/component/headnavbar/headnavbar",
+    "pop-up": "/component/cancel_order/cancel_order"
+  }
+}

@@ -1,0 +1,118 @@
+<!-- 订单详情 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="订单详情"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <view class="header_dis">
+
+      <view class="dis_left">
+        <view class="dis_name" wx:if="{{status == 0}}">待支付</view>
+        <view class="dis_name" wx:if="{{status == 4}}">待发货</view>
+        <view class="dis_name" wx:if="{{status == 10}}">待收货</view>
+        <view class="dis_name" wx:if="{{status == 17}}">待评价</view>
+        <view class="dis_name" wx:if="{{status == -3}}">交易关闭</view>
+        <view class="dis_name" wx:if="{{status == 5}}">交易完成</view>
+        <view class="dis_time">{{order_details.createdate}}</view>
+      </view>
+
+      <image class="dis_right" src="/images/right.png" wx:if="{{status == 10}}"></image>
+
+    </view>
+
+
+    <view class="order_address">
+      <image class="address_img" src="/images/site.png"></image>
+      <view class="address_details">
+        <view class="details_name">{{order_details.name}}</view>
+        <view class="details_phone">{{order_details.phone}}</view>
+        <view class="details_add">{{order_details.province + order_details.city + order_details.region + order_details.address}}</view>
+      </view>
+    </view>
+
+    <view class="goods_details">
+
+      <view class="goods" wx:for="{{order_details.orderDetailList}}" wx:key="index">
+        <image class="goods_img" src="{{item.picPath}}"></image>
+        <view class="goods_right">
+          <view class="goods_name">{{item.goodName}}</view>
+          <view class="goods_title">{{item.title}}</view>
+          <view class="goods_right_dis">
+            <view class="goods_price">￥{{item.price/100}}</view>
+            <view class="goods_num">×{{item.quality}}</view>
+          </view>
+        </view>
+
+        <view class="after_sale" wx:if="{{status == 10}}">申请售后</view>
+
+        <view style="clear:both"></view>
+      </view>
+
+      <view class="tit_char_dis">
+        <view class="tit_char">支持7天无理由退货</view>
+        <view class="refund" wx:if="{{status == 4}}">退款</view>
+      </view>
+
+
+      <view class="tit_left">总价：
+        <span class="tit_right">￥{{order_details.goodsFee}}</span>
+      </view>
+      <view class="tit_left">运费：
+        <span class="tit_right">￥{{order_details.shipFee}}</span>
+      </view>
+      <view class="tit_left">优惠：
+        <span class="tit_right">￥0</span>
+      </view>
+      <view class="tit_left" wx:if="{{order_details.orderRemark != ''}}">留言：
+        <span class="tit_right">￥{{order_details.orderRemark}}</span>
+      </view>
+
+      <view class="aggregate">总计：
+        <span class="agg_char">{{order_details.totalNum}}</span>
+      </view>
+
+
+    </view>
+
+
+    <view class="orderinfo">
+      <view class="orderinfo_char">订单信息</view>
+      <view class="code_dis">
+        <view class="code_left">订单编号：{{code}}</view>
+        <view class="copy" bindtap="copy" data-code="{{code}}">复制</view>
+      </view>
+    </view>
+
+    <!-- 猜你喜欢 -->
+    <image class="like" src="/images/shopping/like.png"></image>
+
+    <view class="recommend" wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}" bindtap="hot_Sale">
+      <image class="recommend_img" src="{{item.picPath}}"></image>
+      <view class="recommend_name">{{item.goodName}}</view>
+      <view class="recommend_price">￥{{item.goodprice/100}}</view>
+      <view class="payment">{{item.saleNum}}人付款</view>
+    </view>
+
+    <view style="clear:both"></view>
+
+    <!-- 底部固定栏 -->
+    <view class="bottom_fixed">
+      <view class="cancel" bindtap="cancellation" wx:if="{{status == 0 || status == 4}}">取消订单</view>
+      <view class="cancel" wx:if="{{status == -3 || status == 5 || status == 17}}">删除订单</view>
+      <view class="cancel" wx:if="{{status == 10}}">延迟收货</view>
+      <view class="cancel" wx:if="{{status == 10}}">查看物流</view>
+
+      <view class="pay" wx:if="{{status == 0}}">支付</view>
+      <view class="pay" wx:if="{{status == 4}}">提醒发货</view>
+      <view class="pay" wx:if="{{status == 10}}">确认收货</view>
+      <view class="pay" wx:if="{{status == 5 || status == 17}}">评价</view>
+
+
+    </view>
+
+    <pop-up id="pop-up" hideModal="{{hideModal}}" paytogether="{{code}}" order_details="order_details" bind:jump="jump"></pop-up>
+
+  </view>
+
+</view>

@@ -1,0 +1,132 @@
+<!-- 商品列表 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="headnav" page-name="商品列表"></navbar>
+
+  <view class="page-content">
+
+    <!-- 搜索框 -->
+    <view class="search_box" bindtap="jump_search">
+      <span class="search_char">{{inputValue}}</span>
+    </view>
+
+    <!-- 排序、切换视图、筛选 -->
+    <view class="cut_all">
+
+      <!-- 综合 -->
+      <view class="synthesize {{cutIndex == 1?'click_red':''}}" bindtap="synthesize">综合</view>
+
+      <!-- 销量 -->
+      <view class="sales_volume {{cutIndex == 2?'click_red':''}}" bindtap="sales_volume">销量</view>
+
+      <!-- 价格 -->
+      <view class="price_all" bindtap="price_all" wx:if="{{price_no == true}}">
+
+        <view class="price_all_char {{cutIndex == 3?'click_red':''}}">价格</view>
+        <view class="price_all_img">
+          <image class="price_all_img_up" src="/images/product_list/high.png"></image>
+          <image class="price_all_img_down" src="/images/product_list/low.png"></image>
+        </view>
+
+      </view>
+
+      <!-- 价格点击第一次 -->
+      <view class="price_all" bindtap="price_all_up" wx:if="{{price_no != true && price_up == true}}">
+
+        <view class="price_all_char {{cutIndex == 3?'click_red':''}}">价格</view>
+        <view class="price_all_img">
+          <image class="price_all_img_up" src="/images/product_list/hign-red.png"></image>
+          <image class="price_all_img_down" src="/images/product_list/low.png"></image>
+        </view>
+
+      </view>
+
+      <!-- 价格点击第二次 -->
+      <view class="price_all" bindtap="price_all_down" wx:if="{{price_no != true && price_up == false}}">
+
+        <view class="price_all_char {{cutIndex == 3?'click_red':''}}">价格</view>
+        <view class="price_all_img">
+          <image class="price_all_img_up" src="/images/product_list/high.png"></image>
+          <image class="price_all_img_down" src="/images/product_list/low-red.png"></image>
+        </view>
+
+      </view>
+
+
+      <!-- 视图切换 -->
+      <image class="product_list" wx:if="{{productList == true}}" src="/images/product_list/list.png" bindtap="cut_view"></image>
+      <image class="product_list" wx:else src="/images/product_list/tiling.png" bindtap="cut_view"></image>
+
+      <!-- 竖线 -->
+      <view class="wire"></view>
+
+      <!-- 筛选 -->
+      <view class="filtrate_all">
+        <view class="filtrate">筛选</view>
+        <image class="filtrate_img" src="/images/product_list/screen.png"></image>
+      </view>
+
+
+    </view>
+
+    <!-- 间隔 -->
+    <view class="interval"></view>
+
+    <!-- 商品列表视图 -->
+    <block wx:if="{{productList}}">
+
+      <view class="goods_list" wx:for="{{goods}}" wx:key="index" bindtap="skip_details" data-id="{{item.id}}">
+
+        <!-- 商品图片 -->
+        <image class="goods_img" src="{{item.picPath}}?x-oss-process=image/resize,h_300,w_500"></image>
+
+        <!-- 商品信息 -->
+        <view class="goods_mes">
+          <view class="goods_name">{{item.goodName}}</view>
+
+          <view class="activity">新品#
+            <span>{{item.labels}}</span>
+          </view>
+
+          <view class="paynums">
+            <view class="payment">{{item.saleNum}}人付款</view>
+            <view class="praise">好评率：98.9%</view>
+          </view>
+
+          <view class="goods_price">￥{{item.goods_price}}</view>
+
+        </view>
+
+        <view style="clear:both;"></view>
+
+      </view>
+
+    </block>
+
+
+
+    <!-- 商品平铺视图 -->
+    <view wx:else class="goods_tile_all">
+
+      <view class="goods_tile" wx:for="{{goods}}" wx:key="index" bindtap="skip_details" data-id="{{item.id}}">
+        <!-- 商品图片 -->
+        <image class="goods_tile_img" src="{{item.picPath}}"></image>
+        <!-- 商品名 -->
+        <view class="goods_tile_name">{{item.goodName}}</view>
+        <!-- 好评率 -->
+        <view class="feedback">好评率：98.9%</view>
+        <!-- 商品价格 -->
+        <view class="goods_tile_price">￥{{item.goods_price}}</view>
+
+
+      </view>
+      <view style="clear:both"></view>
+
+    </view>
+
+
+
+  </view>
+
+
+</view>

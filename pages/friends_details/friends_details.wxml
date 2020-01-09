@@ -1,0 +1,47 @@
+<!-- 好友详情 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar page-name="好友详情"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <view class="header">
+      <image class="user_img" src="{{row.headImg}}"></image>
+      <view class="user_name">{{row.memberName}}</view>
+      <view class="account">账号：{{account}}</view>
+
+      <view class="time">邀请时间：{{time}}</view>
+    </view>
+
+
+    <view class="black" bindtap="friends_record">
+
+      <view class="profit">产生利润</view>
+
+      <view class="profit_right">
+        <view class="profit_price">￥{{price}}</view>
+        <image class="you" src="/images/right.png"></image>
+      </view>
+
+    </view>
+
+    <view class="report">记录报告</view>
+
+    <block wx:if="{{report.length == 0}}">
+      <image class="report_img" src="/images/report.png"></image>
+      <view class="report_char">该好友尚未开始购物</view>
+    </block>
+
+    <block wx:else>
+
+      <view class="y_report" wx:for="{{report}}" wx:key="index">
+        <view class="report_time">{{item.time}}</view>
+        <view class="report_price" wx:if="{{item.flowType == 1}}">返利金额：<span class="report_price_de">￥{{item.flowProfitYuan}}</span></view>
+        <view class="report_price" wx:if="{{item.flowType == 2}}">提现金额：<span class="report_price_de">￥{{item.flowProfitYuan}}</span></view>
+      </view>
+
+    </block>
+
+  </view>
+
+</view>

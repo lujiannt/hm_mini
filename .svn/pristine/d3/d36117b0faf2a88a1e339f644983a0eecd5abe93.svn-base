@@ -1,0 +1,106 @@
+<!-- 购物车 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="购物车"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+
+    <!-- 没登陆 -->
+    <view class="no_login" wx:if="{{no_login == true}}">
+      <image class="no_login_img" src="/images/no_login_img.png"></image>
+      <view class="no_login_char">登录后可同步购物车中的商品</view>
+      <view class="to_login" bindtap="to_login">去登录</view>
+    </view>
+
+    <!-- 登录后 -->
+    <view class="yes_login" wx:else>
+
+      <view  class="shopping_header" bindtap="finish">
+        <view class="shopping_header_char">您的购物车里有{{rows.length}}件商品</view>
+        <view class="reg" wx:if="{{regulate == false}}">管理</view>
+        <view class="reg" wx:else>完成</view>
+      </view>
+
+      <!-- 购物车商品 -->
+      <view class="shopping_cart_items" wx:for="{{rows}}" wx:key="index" bindtap="choose" data-id="{{item.id}}" data-quality="{{item.quality}}" data-price="{{item.goodprice/100}}">
+
+        <!-- 选择 -->
+        <image wx:if="{{item.select == false}}" class="shopping_cart_sel" src="/images/shopping/k_choice.png"></image>
+        <image wx:else class="shopping_cart_sel" src="/images/shopping/choice.png"></image>
+
+        <!-- 商品图片 -->
+        <image class="shopping_cart_img" src="{{item.picpath}}"></image>
+
+        <!-- 商品信息 -->
+        <view class="merchandise_news">
+
+          <view class="shopping_cart_name">{{item.goodname}}</view>
+          <view class="pro_title">{{item.pro_title}}</view>
+
+          <view class="pro_dis">
+            <view class="shopping_cart_price">￥{{item.goodprice/100}}</view>
+            <view class="add_minus">
+              <view class="less_minus {{goods_num >1?'minus':''}}" catchtap="subtract" data-id="{{item.id}}">-</view>
+              <view class="goods_num">{{item.quality}}</view>
+
+              <view class="add" catchtap="add" data-id="{{item.id}}">+</view>
+
+            </view>
+          </view>
+
+
+
+        </view>
+
+        <view style="clear:both"></view>
+
+
+
+      </view>
+
+
+      <!-- 猜你喜欢 -->
+      <image class="Hot_Sale" src="/images/shopping/like.png"></image>
+
+      <view class="recommend" wx:for="{{recommend}}" wx:key="index" data-id="{{item.id}}" bindtap="hot_Sale">
+        <image class="recommend_img" src="{{item.picPath}}"></image>
+        <view class="recommend_name">{{item.goodName}}</view>
+        <view class="recommend_price">￥{{item.goodprice/100}}</view>
+        <view class="payment">{{item.saleNum}}人付款</view>
+      </view>
+
+      <view style="clear:both"></view>
+
+      <!-- 全选结算 -->
+      <view class="check_Settlement">
+
+        <view class="check_all" bindtap="c_all">
+          <image class="check_all_img" src="{{check_all}}"></image>
+          <view class="check_all_char">全选</view>
+        </view>
+
+        <view class="settlement" wx:if="{{regulate == false}}">
+          <view class="total">总计：
+            <span class="set_price">￥254</span>
+          </view>
+          <button class="but_set {{but_set == false ? 'but_settlement':''}}" disabled="{{but_set}}" bindtap="clearing">结算</button>
+        </view>
+
+        <view class="settlement" wx:else>
+          <view class="collect">移入收藏</view>
+           <button class="but_set {{but_set == false ? 'but_settlement':''}}" disabled="{{but_set}}" bindtap="remove">删除</button>
+        </view>
+
+
+
+      </view>
+
+    </view>
+
+
+
+
+
+  </view>
+
+</view>

@@ -1,0 +1,32 @@
+<!-- 关于我们 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="headnav" page-name="关于我们"></navbar>
+
+  <view class="page-content">
+
+    <image class="zlogo" src="/images/zlogo.png"></image>
+
+    <view class=" options">
+      <view class="options_char">商城简介</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">用户协议</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">隐私政策</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">免责声明</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+  </view>
+
+</view>

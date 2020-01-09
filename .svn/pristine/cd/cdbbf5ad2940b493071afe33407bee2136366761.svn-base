@@ -1,0 +1,142 @@
+<!-- 我的 -->
+<view class='view-page'>
+  <!-- 自定义导航栏 -->
+  <navbar class="normalnav" page-name="我的"></navbar>
+  <!-- 内容 -->
+  <view class="page-content">
+    
+    <!-- 登录 -->
+    <image class="user_img" src="/images/my/head.png" wx:if="{{whether_login == null || whether_login == undefined || whether_login == ''}}"></image>
+    <view class="to_login" bindtap="to_login" wx:if="{{whether_login == null || whether_login == undefined || whether_login == ''}}">去登录</view>
+
+    <!-- 登录后 -->
+    <image class="user_img" src="{{whether_login.headimg}}" wx:if="{{whether_login != null && whether_login != undefined && whether_login != ''}}"></image>
+    <view wx:if="{{whether_login != null && whether_login != undefined && whether_login != ''}}" class="user_name">{{whether_login.nickname}}</view>
+    <view wx:if="{{whether_login != null && whether_login != undefined && whether_login != ''}}" class="user_invite">邀请码：{{whether_login.sid}}</view>
+
+
+    <!-- 收藏、优惠券 -->
+    <view class="collect_discounts">
+      <!-- 收藏 -->
+      <view class="collect">
+        <span class="collect_char">收藏</span>
+        <span class="collect_num">0</span>
+        <image class="collect_img" src="/images/my/arrow.png"></image>
+      </view>
+      <!-- 优惠券 -->
+      <view class="discounts">
+        <span class="collect_char">优惠券</span>
+        <span class="collect_num">0</span>
+        <image class="collect_img" src="/images/my/arrow.png"></image>
+      </view>
+
+    </view>
+
+    <!-- 我的订单 -->
+    <view class="order">
+
+      <view class="order_dis" bindtap="my_order">
+        <image class="order_dis_img" src="/images/my/order.png"></image>
+        <view class="all_orders">
+          <view class="all_orders_char">所有订单</view>
+          <image class="all_orders_img" src="/images/my/arrow.png"></image>
+        </view>
+      </view>
+
+      <view class="five_order">
+
+        <view class="every_order" bindtap="await" data-name="待付款">
+          <image class="every_order_img" src="/images/my/payment.png"></image>
+          <view class="every_order_char">待付款</view>
+        </view>
+
+        <view class="every_order_special" bindtap="await" data-name="待发货">
+          <image class="every_order_img" src="/images/my/deliver.png"></image>
+          <view class="every_order_char">待发货</view>
+          <view class="every_order_num" wx:if="{{whether_login != null && whether_login != undefined && whether_login != ''}}">{{all_orders.length}}</view>
+        </view>
+
+        <view class="every_order" bindtap="await" data-name="待收货">
+          <image class="every_order_img" src="/images/my/collect.png"></image>
+          <view class="every_order_char">待收货</view>
+        </view>
+
+        <view class="every_order" bindtap="await" data-name="待评价">
+          <image class="every_order_img" src="/images/my/evaluate.png"></image>
+          <view class="every_order_char">待评价</view>
+        </view>
+
+        <view class="every_order" bindtap="await" data-name="售后">
+          <image class="every_order_img" src="/images/my/service.png"></image>
+          <view class="every_order_char">售后</view>
+        </view>
+
+      </view>
+
+    </view>
+
+    <!-- 最新物流 -->
+    <view class="newest" wx:if="{{whether_login != null && whether_login != undefined && whether_login != ''}}">最新物流</view>
+    
+    <view class="newest_mar" wx:if="{{whether_login != null && whether_login != undefined && whether_login != ''}}">
+      <image class="newest_img" src="{{logistics.picpath}}"></image>
+      <view class="right_newest">
+        <!-- 物流状态、时间 -->
+        <view class="state">
+          <view class="newest_state">{{logistics.shipinfo.goodsname}}</view>
+          <view class="newest_time">{{logistics.shipinfo.time}}</view>
+        </view>
+        <view class="mewest_details">{{logistics.shipinfo.status}}</view>
+      </view>
+    </view>
+
+    <!-- 各种选项 -->
+    <view class=" options" bindtap="personal_data">
+      <view class="options_char">个人资料</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options" bindtap="add_address">
+      <view class="options_char">地址管理</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">我的评价</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">钱包</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">银行卡</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options" bindtap="invite_friends">
+      <view class="options_char">邀请好友</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">关于我们</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">客服帮助</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+    <view class=" options">
+      <view class="options_char">设置</view>
+      <image class="options_img" src="/images/my/arrow.png"></image>
+    </view>
+
+
+
+  </view>
+</view>

@@ -1,0 +1,41 @@
+/* pages/About_Us /About_Us .wxss */
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 120rpx;
+}
+.zlogo{
+  width: 190rpx;
+  height: 190rpx;
+  margin: 200rpx auto 80rpx auto;
+  display: block;
+}
+
+.options{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cccccc;
+  width: 700rpx;
+  margin: 0 auto 50rpx auto;
+}
+.options_char{
+  font-size: 28rpx;
+  color: #333333;
+  margin: 0 0 30rpx 25rpx;
+  font-weight: bold;
+}
+.options_img{
+  width: 12rpx;
+  height: 22rpx;
+  margin: 0 30rpx 30rpx 0;
+}

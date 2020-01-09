@@ -1,0 +1,62 @@
+/* pages/my_friends/my_friends.wxss */
+
+page {
+  background-color: #f7f7f7;
+}
+
+.view-page {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.page-content {
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 130rpx;
+}
+
+.friends_arr {
+  height: 144rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  margin: 0 0 0 60rpx;
+  display: flex;
+  align-items: center;
+}
+
+.firends_img {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  margin-right: 70rpx;
+}
+
+.phone {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.right {
+  margin-right: 70rpx;
+  display: flex;
+  align-items: center;
+}
+.time{
+  font-size: 28rpx;
+  color: #b3b3b3;
+  margin-right: 24rpx;
+}
+.you{
+  width: 12rpx;
+  height: 22rpx;
+}
